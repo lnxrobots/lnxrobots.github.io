@@ -1,0 +1,41 @@
+body {
+    background-size: 200px;
+    background-color: #282828;
+    color: #FFFFFF;
+    padding-bottom: 15px;
+}
+
+@font-face {
+    font-family: "Aquire";
+    src: url("aquire-font/AquireBold-8Ma60.otf") format("opentype");
+}
+
+.my-navbar {
+    background-color: #151515;
+}
+
+.my-navbar .navbar-brand {
+    color: white;
+    font-family: Aquire, sans;
+    font-size: 25px;
+}
+
+.my-tab {
+    display: none;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.my-card {
+    background-color: #151515;
+    border: 1px solid grey;
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.social-icon {
+    font-size: 22px;
+}
