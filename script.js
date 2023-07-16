@@ -1,5 +1,5 @@
 const TABS = document.getElementsByClassName("my-tab");
-const TAB_LINKS = document.getElementsByClassName("tab-link")
+const TAB_LINKS = document.getElementsByClassName("tab-link");
 
 function removeHash() {
     history.pushState("", document.title, window.location.pathname + window.location.search);
@@ -21,7 +21,10 @@ function openTab(tab) {
 }
 
 for (let l of TAB_LINKS) {
-    l.addEventListener("click", () => openTab(l.id.split("-")[1]));
+    l.addEventListener("click", () => {
+        openTab(l.id.split("-")[1]);
+        document.getElementById("my-navbar").classList.remove("show");
+    });
 }
 
 if (window.location.hash) {

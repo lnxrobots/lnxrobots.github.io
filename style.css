@@ -32,10 +32,23 @@ body {
     background-color: #151515;
     border: 1px solid grey;
     margin: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 20px 25px;
 }
 
 .social-icon {
     font-size: 22px;
+}
+
+.tab-header {
+    margin-bottom: 20px;
+}
+
+.video-embed {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+}
+
+.sponsors-card {
+    height: fit-content;
 }
