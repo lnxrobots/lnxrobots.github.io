@@ -31,6 +31,7 @@ body {
 .my-card {
     background-color: #151515;
     border: 1px solid grey;
+    height: fit-content;
     margin: 10px;
     padding: 20px 25px;
 }
@@ -47,8 +48,4 @@ body {
     width: 100%;
     height: auto;
     aspect-ratio: 16/9;
-}
-
-.sponsors-card {
-    height: fit-content;
 }
