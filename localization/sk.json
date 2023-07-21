@@ -1,0 +1,18 @@
+{
+    "Home": "Domov",
+    "Achievements": "Úspechy",
+    "Docs": "Dokumentácia",
+    "Welcome!": "Vitajte!",
+    "We are a team of high school students from Bratislava, Slovakia. We are interested in robotics and programming and are participating mostly in <a href=\"https://junior.robocup.org/soccer/\">RoboCup Junior Soccer</a>.": "Sme skupina stredoškolákov z Bratislavy. Zaujímame sa o robotiku a programovanie a venujeme sa najmä súťaži <a href=\"https://junior.robocup.org/soccer/\">RoboCup Junior Soccer</a>.",
+    "<span class=\"fa fa-trophy\"></span> Achievements": "<span class=\"fa fa-trophy\"></span> Úspechy",
+    "15th place in Junior Soccer Open (Game)": "15. miesto v Junior Soccer Open (zápasy)",
+    "1st place in Junior Soccer Open SuperTeam": "1. miesto v Junior Soccer Open SuperTeam",
+    "European RoboCup Junior 2023 Varaždin": "Európsky RoboCup Junior 2023 Varaždin",
+    "5th place in Soccer Open": "5. miesto v Soccer Open",
+    "RoboCup Junior 2023 Slovakia": "RoboCup Junior 2023 Slovensko",
+    "1st place in Soccer Open": "1. miesto v Soccer Open",
+    "<span class=\"fa fa-file-lines\"></span> Documentation": "<span class=\"fa fa-file-lines\"></span> Dokumentácia",
+    "<span class=\"fa fa-file-pdf\"></span> <a href=\"/docs/2023/LNX_Robots_pcb-schematic.pdf\">PCB schematic</a>": "<span class=\"fa fa-file-pdf\"></span> <a href=\"/docs/2023/LNX_Robots_pcb-schematic.pdf\">PCB schéma</a>",
+    "Our sponsors": "Naši sponzori",
+    "Want to become our sponsor? Contact us on <a href=\"mailto:lnxrobots@gmail.com\">lnxrobots@gmail.com</a>": "Máte záujem stať sa našimi sponzormi? Kontaktujte nás na <a href=\"mailto:lnxrobots@gmail.com\">lnxrobots@gmail.com</a>"
+}

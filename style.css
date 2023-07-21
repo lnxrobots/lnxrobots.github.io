@@ -40,6 +40,13 @@ body {
     font-size: 22px;
 }
 
+.my-select, .my-select:focus {
+    cursor: pointer;
+    background-color: #151515;
+    border: 1px solid grey;
+    color: white;
+}
+
 .tab-header {
     margin-bottom: 20px;
 }
