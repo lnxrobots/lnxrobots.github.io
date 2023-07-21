@@ -28,6 +28,7 @@ function openTab(tab) {
 
 function translate(lang) {
     LANG_SELECT.value = lang;
+    document.getElementsByTagName("html")[0].lang = lang;
     if (lang === "en") return;
     fetch("/localization/"+LANGUAGE_FILES[lang])
         .then(response => response.json())
@@ -35,7 +36,6 @@ function translate(lang) {
             for(let e of document.getElementsByTagName("*")) {
                 if (e.innerHTML.trim() in data) {
                     e.innerHTML = data[e.innerHTML.trim()];
-                    e.lang = lang;
                 }
             }
         });
