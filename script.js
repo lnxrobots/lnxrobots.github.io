@@ -5,13 +5,14 @@ const NAVBAR = document.getElementById("my-navbar");
 
 const LANGUAGES = ['en', 'sk']
 const LANGUAGE_FILES = {'sk': 'sk.json', 'sk-SK': 'sk.json'}
-const LANGUAGE_NAMES = {'en': '🇬🇧 EN', 'sk': '🇸🇰 SK'}
+const LANGUAGE_NAMES = {'en': '&#127468&#127463 EN', 'sk': '&#127480&#127472 SK'}
 
 function removeHash() {
     history.pushState("", document.title, window.location.pathname + window.location.search);
 }
 
 function openTab(tab) {
+    NAVBAR.classList.remove("show");
     for (let t of TABS) {
         t.style.display = "none";
     }
@@ -20,9 +21,23 @@ function openTab(tab) {
     }
     document.getElementById("nav-" + tab).parentElement.classList.add("active");
     document.getElementById("tab-" + tab).style.display = "block";
-    window.location.hash = tab;
     if (tab === "home") {
         removeHash();
+    }
+}
+
+function updateTab() {
+    if (window.location.hash) {
+        openTab(window.location.hash.substring(1));
+    } else {
+        openTab("home");
+    }
+}
+
+function allDescendants(element, fun) {
+    for (let child of element.children) {
+        fun(child);
+        allDescendants(child, fun);
     }
 }
 
@@ -33,26 +48,16 @@ function translate(lang) {
     fetch("/localization/"+LANGUAGE_FILES[lang])
         .then(response => response.json())
         .then(data => {
-            for(let e of document.getElementsByTagName("*")) {
+            allDescendants(document.body, e => {
                 if (e.innerHTML.trim() in data) {
                     e.innerHTML = data[e.innerHTML.trim()];
                 }
-            }
+            });
         });
 }
 
-for (let l of TAB_LINKS) {
-    l.addEventListener("click", () => {
-        openTab(l.id.split("-")[1]);
-        NAVBAR.classList.remove("show");
-    });
-}
-
-if (window.location.hash) {
-    openTab(window.location.hash.substring(1));
-} else {
-    openTab("home");
-}
+window.addEventListener("hashchange", updateTab);
+updateTab();
 
 for (let l of LANGUAGES) {
     let opt = document.createElement("option");
@@ -74,4 +79,6 @@ if (localStorage.getItem("lang") != null) {
     translate(localStorage.getItem("lang"));
 } else if (navigator.language in LANGUAGE_FILES) {
     translate(navigator.language);
+} else {
+    LANG_SELECT.value = "en";
 }

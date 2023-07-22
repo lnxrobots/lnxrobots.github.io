@@ -3,11 +3,18 @@ body {
     background-color: #282828;
     color: #FFFFFF;
     padding-bottom: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",sans-serif, NotoColorEmojiFlag, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 @font-face {
     font-family: "Aquire";
-    src: url("aquire-font/AquireBold-8Ma60.otf") format("opentype");
+    src: url("fonts/aquire-font/AquireBold-8Ma60.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "NotoColorEmojiFlag";
+    unicode-range: U+1F1E6-1F1FF;
+    src: url("fonts/noto-color-emoji/NotoColorEmoji.ttf") format("opentype");
 }
 
 .my-navbar {
