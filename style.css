@@ -63,3 +63,7 @@ body {
     height: auto;
     aspect-ratio: 16/9;
 }
+
+#galleria {
+    height: 500px;
+}

@@ -1,6 +1,7 @@
 {
     "Home": "Domov",
     "Achievements": "Úspechy",
+    "Gallery": "Galéria",
     "Docs": "Dokumentácia",
     "Welcome!": "Vitajte!",
     "We are a team of high school students from Bratislava, Slovakia. We are interested in robotics and programming and are participating mostly in <a href=\"https://junior.robocup.org/soccer/\">RoboCup Junior Soccer</a>. More about contests we attended in the past can be found in the <a href=\"#achievements\">Achievements</a> section.":"Sme skupina stredoškolákov z Bratislavy. Zaujímame sa o robotiku a programovanie, venujeme sa najmä súťaži <a href=\"https://junior.robocup.org/soccer/\">RoboCup Junior Soccer</a>. Viac o udalostiach, ktorých sme sa zúčastnili, nájdete v sekcii <a href=\"#achievements\">Úspechy</a>.",
@@ -26,5 +27,11 @@
     "<span class=\"fa fa-file-pdf\"></span> <a href=\"/docs/2023/LNX_Robots_pcb-schematic.pdf\">PCB schematic</a>": "<span class=\"fa fa-file-pdf\"></span> <a href=\"/docs/2023/LNX_Robots_pcb-schematic.pdf\">PCB schéma</a>",
     "<span class=\"fa fa-link\"></span> Code (soon)": "<span class=\"fa fa-link\"></span> Kód (čoskoro)",
     "Our sponsors": "Naši sponzori",
-    "Want to become our sponsor? Contact us on <a href=\"mailto:lnxrobots@gmail.com\">lnxrobots@gmail.com</a>": "Máte záujem stať sa našimi sponzormi? Kontaktujte nás na <a href=\"mailto:lnxrobots@gmail.com\">lnxrobots@gmail.com</a>"
+    "Want to become our sponsor? Contact us on <a href=\"mailto:lnxrobots@gmail.com\">lnxrobots@gmail.com</a>": "Máte záujem stať sa našimi sponzormi? Kontaktujte nás na <a href=\"mailto:lnxrobots@gmail.com\">lnxrobots@gmail.com</a>",
+    "Working on robots": "Práca na robotoch",
+    "Calibrating robots": "Kalibrácia robotov",
+    "LNX Robots and i-bots 2": "LNX Robots a i-bots 2",
+    "LNX Robots and Mapletech Nebula": "LNX Robots a Mapletech Nebula",
+    "Awards ceremony": "Vyhlásenie výsledkov",
+    "Robots at the ocean": "Roboti pri mori"
 }

@@ -41,19 +41,50 @@ function allDescendants(element, fun) {
     }
 }
 
-function translate(lang) {
+function translate(lang, target=document.body, do_gallery=true) {
     LANG_SELECT.value = lang;
     document.getElementsByTagName("html")[0].lang = lang;
-    if (lang === "en") return;
+    if (lang === "en") {
+        if (do_gallery) makeGallery();
+        return;
+    }
     fetch("/localization/"+LANGUAGE_FILES[lang])
         .then(response => response.json())
         .then(data => {
-            allDescendants(document.body, e => {
+            if (do_gallery) makeGallery(data);
+            allDescendants(target, e => {
                 if (e.innerHTML.trim() in data) {
                     e.innerHTML = data[e.innerHTML.trim()];
+                    e.dataset.translated = "true"
                 }
             });
         });
+}
+
+function autoTranslate(target=document.body, do_gallery=true) {
+    if (localStorage.getItem("lang") != null) {
+        translate(localStorage.getItem("lang"), target, do_gallery);
+    } else if (navigator.language in LANGUAGE_FILES) {
+        translate(navigator.language, target, do_gallery);
+    } else {
+        LANG_SELECT.value = "en";
+        if (do_gallery) makeGallery();
+    }
+}
+
+function makeGallery(lang_data={}) {
+    let data = JSON.parse(gallery_json);
+    for (let i = 0; i < data["dataSource"].length; i++) {
+        img = data["dataSource"][i]["image"]
+        data["dataSource"][i]["image"] = data["image_folder"] + img;
+        data["dataSource"][i]["thumb"] = data["thumbnail_folder"] + img;
+        for (let key of ["title", "description"]) {
+            if (data["dataSource"][i][key] in lang_data) {
+                data["dataSource"][i][key] = lang_data[data["dataSource"][i][key]];
+            }
+        }
+    }
+    Galleria.run("#galleria", data);
 }
 
 window.addEventListener("hashchange", updateTab);
@@ -73,12 +104,14 @@ LANG_SELECT.addEventListener("change", () => {
     } else {
         NAVBAR.classList.remove("show");
     }
-})
+});
+autoTranslate(document.body, false);
 
-if (localStorage.getItem("lang") != null) {
-    translate(localStorage.getItem("lang"));
-} else if (navigator.language in LANGUAGE_FILES) {
-    translate(navigator.language);
-} else {
-    LANG_SELECT.value = "en";
-}
+let gallery_json = "";
+Galleria.loadTheme("https://cdnjs.cloudflare.com/ajax/libs/galleria/1.6.1/themes/folio/galleria.folio.min.js");
+fetch("/gallery.json")
+    .then(response => response.text())
+    .then(data => {
+        gallery_json = data
+        autoTranslate();
+    });

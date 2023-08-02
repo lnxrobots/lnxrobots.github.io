@@ -1,0 +1,37 @@
+{
+    "wait": "true",
+    "image_folder": "/images/gallery/img/",
+    "thumbnail_folder": "/images/gallery/thumb/",
+    "dataSource": [
+        {
+            "image": "P1024698.jpg",
+            "title": "Working on robots",
+            "description": "RoboCup 2023 Bordeaux"
+        },
+        {
+            "image": "P1014464.jpg",
+            "title": "Calibrating robots",
+            "description": "RoboCup 2023 Bordeaux"
+        },
+        {
+            "image": "LNX_ibots2.jpg",
+            "title": "LNX Robots and i-bots 2",
+            "description": "RoboCup 2023 Bordeaux"
+        },
+        {
+            "image": "LNX_MapleTechNebula.jpg",
+            "title": "LNX Robots and Mapletech Nebula",
+            "description": "RoboCup 2023 Bordeaux"
+        },
+        {
+            "image": "IMG_8112.jpg",
+            "title": "Awards ceremony",
+            "description": "RoboCup 2023 Bordeaux"
+        },
+        {
+            "image": "IMG_8162.jpg",
+            "title": "Robots at the ocean",
+            "description": "RoboCup 2023 Bordeaux"
+        }
+    ]
+}
