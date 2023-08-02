@@ -4,22 +4,22 @@
     "thumbnail_folder": "/images/gallery/thumb/",
     "dataSource": [
         {
-            "image": "P1024698.jpg",
+            "image": "P1024698.JPG",
             "title": "Working on robots",
             "description": "RoboCup 2023 Bordeaux"
         },
         {
-            "image": "P1014464.jpg",
+            "image": "P1014464.JPG",
             "title": "Calibrating robots",
             "description": "RoboCup 2023 Bordeaux"
         },
         {
-            "image": "LNX_ibots2.jpg",
+            "image": "LNX_ibots2.JPG",
             "title": "LNX Robots and i-bots 2",
             "description": "RoboCup 2023 Bordeaux"
         },
         {
-            "image": "LNX_MapleTechNebula.jpg",
+            "image": "LNX_MapleTechNebula.JPG",
             "title": "LNX Robots and Mapletech Nebula",
             "description": "RoboCup 2023 Bordeaux"
         },
