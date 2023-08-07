@@ -63,12 +63,12 @@
     </nav>
 
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 container card my-card">
-          <div class="my-tab" id="tab-home">
+      <div class="my-tab" id="tab-home">
+        <div class="row">
+          <div class="col-md-8 container card my-card">
             <h2 class="tab-header">Welcome!</h2>
             <a href="/images/team.jpg">
-              <img class="w-100 mb-3" src="/images/team-small.jpg" alt="Our team with soccer robots">
+              <img class="content-img" src="/images/team-small.jpg" alt="Our team with soccer robots">
             </a>
             <p>
               We are a team of high school students from Bratislava, Slovakia. We are interested in robotics and programming and are participating mostly in <a href="https://junior.robocup.org/soccer/">RoboCup Junior Soccer</a>. More about contests we attended in the past can be found in the <a href="#achievements">Achievements</a> section.
@@ -77,79 +77,82 @@
               We would like to participate next year as well. We will continue to improve our robots to achieve better results and learn even more.
             </p>
           </div>
-          <div class="my-tab" id="tab-achievements">
-            <h2 class="tab-header"><span class="fa fa-trophy"></span> Achievements</h2>
-            <h3>RoboCup 2023 Bordeaux</h3>
-            <ul>
-              <li>
-                15th place in Junior Soccer Open (Game)
-              </li>
-              <li>
-                1st place in Junior Soccer Open SuperTeam
-              </li>
-            </ul>
-            <iframe class="video-embed" src="https://www.youtube.com/embed/3-lUAyqajDM" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <h3>European RoboCup Junior 2023 Varaždin</h3>
-            <ul>
-              <li>
-                <a href="http://robocup.zviz.net/european-robocup-junior-2023/results">
-                  5th place in Soccer Open
-                </a>
-              </li>
-            </ul>
-            <h3>RoboCup Junior 2023 Slovakia</h3>
-            <ul>
-              <li>
-                <a href="https://wiki.robotika.sk/robowiki/images/2/28/RCJ2023_Soccer_open_results.pdf">
-                  1st place in Soccer Open
-                </a>
-              </li>
-            </ul>
-            <iframe class="video-embed" src="https://www.youtube.com/embed/EfiDgmioZJE" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="col-md container card my-card sponsors-card text-center">
+            <h2>Our sponsors</h2>
+            <div class="px-4">
+              <a href="https://www.gamca.sk/"><img class="w-100 my-4" src="/images/sponsors/gamca.svg" alt="GAMČA"></a>
+              <a href="https://www.alanata.sk/en/homepage/"><img class="w-100 my-4" src="/images/sponsors/alanata.svg" alt="Alanata"></a>
+              <a href="https://gymbilba.edupage.org/"><img class="w-50 my-4" src="/images/sponsors/bilikova.png" alt="Gymnázium Bilíkova"></a>
+            </div>
+            <small>Want to become our sponsor? Contact us on <a href="mailto:lnxrobots@gmail.com">lnxrobots@gmail.com</a></small>
           </div>
-          <div class="my-tab" id="tab-gallery">
-            <div id="galleria"></div>
-          </div>
-          <div class="my-tab" id="tab-docs">
-            <h2 class="tab-header"><span class="fa fa-file-lines"></span> Documentation</h2>
-            <h3>RoboCup 2023 Bordeaux</h3>
-            <a href="/images/robots2023.jpg">
-              <img class="w-100 mb-3" src="/images/robots2023-small.jpg" alt="Our team with soccer robots">
+        </div>
+      </div>
+      <div class="my-tab card my-card" id="tab-achievements">
+        <h2 class="tab-header"><span class="fa fa-trophy"></span> Achievements</h2>
+        <h3>RoboCup 2023 Bordeaux</h3>
+        <ul>
+          <li>
+            15th place in Junior Soccer Open (Game)
+          </li>
+          <li>
+            1st place in Junior Soccer Open SuperTeam
+          </li>
+        </ul>
+        <iframe class="video-embed" src="https://www.youtube.com/embed/3-lUAyqajDM" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <h3>European RoboCup Junior 2023 Varaždin</h3>
+        <ul>
+          <li>
+            <a href="http://robocup.zviz.net/european-robocup-junior-2023/results">
+              5th place in Soccer Open
             </a>
-            <p>This was our first time on the international RoboCup. The robot hardware was quite basic:</p>
-            <ul>
-              <li>Main processing unit (object detection, logic): <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/">Raspberry Pi 4</a></li>
-              <li>Camera: <a href="https://www.arducam.com/product/presalearducam-12mp-imx708-hdr-120-wide-angle-camera-module-with-m12-lens-for-raspberry-pi/">Arducam B0310</a> (120 FOV, 12MP), directed forward</li>
-              <li>IMU: <a href="https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/">Adafruit BNO055</a></li>
-              <li>Secondary processing unit (line sensors, motors): <a href="https://www.pjrc.com/store/teensy41.html">Teensy 4.1</a></li>
-              <li>Motors: <a href="https://www.pololu.com/product/3202">Pololu #3202</a> (1000 RPM) / <a href="https://www.pololu.com/product/3203">Pololu #3203</a> (500 RPM)</li>
-              <li>Motor driver: <a href="https://www.st.com/resource/en/datasheet/vnh5019a-e.pdf">VNH5019</a></li>
-              <li>Omni wheels: <a href="https://gtfrobots.com/product/50mm-diameter-4mm-hole-size-omni-wheel/">GTF Robots</a> (50 mm) / self made</li>
-              <li>Line sensors: <a href="https://ams-osram.com/products/leds/ir-leds/osram-midled-sfh-4656">OSRAM SFH-4656</a> + <a href="https://www.kingbrightusa.com/images/catalog/SPEC/AP2012P3C-P22.pdf">Knightbright AP2012P3C</a></li>
-            </ul>
-            <p>
-              For the software, we decided to fully utilize the potential of Raspberry Pi and use multiprocessing - every information processing and interface handling runs in the separate process.
-            </p>
-            <p>
-              More information can be found in the documentation:
-            </p>
-            <ul>
-              <li><span class="fa fa-file-pdf"></span> <a href="/docs/2023/LNX_Robots_poster.pdf">Poster</a></li>
-              <li><span class="fa fa-file-pdf"></span> <a href="/docs/2023/LNX_Robots_documentation.pdf">TDP</a></li>
-              <li><span class="fa fa-file-pdf"></span> <a href="/docs/2023/LNX_Robots_pcb-schematic.pdf">PCB schematic</a></li>
-              <li><span class="fa fa-link"></span> Code (soon)</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md container card my-card sponsors-card text-center">
-          <h2>Our sponsors</h2>
-          <div class="px-4">
-            <a href="https://www.gamca.sk/"><img class="w-100 my-4" src="/images/sponsors/gamca.svg" alt="GAMČA"></a>
-            <a href="https://www.alanata.sk/en/homepage/"><img class="w-100 my-4" src="/images/sponsors/alanata.svg" alt="Alanata"></a>
-            <a href="https://gymbilba.edupage.org/"><img class="w-50 my-4" src="/images/sponsors/bilikova.png" alt="Gymnázium Bilíkova"></a>
-          </div>
-          <small>Want to become our sponsor? Contact us on <a href="mailto:lnxrobots@gmail.com">lnxrobots@gmail.com</a></small>
-        </div>
+          </li>
+        </ul>
+        <h3>RoboCup Junior 2023 Slovakia</h3>
+        <ul>
+          <li>
+            <a href="https://wiki.robotika.sk/robowiki/images/2/28/RCJ2023_Soccer_open_results.pdf">
+              1st place in Soccer Open
+            </a>
+          </li>
+        </ul>
+        <iframe class="video-embed" src="https://www.youtube.com/embed/EfiDgmioZJE" title="YouTube video player" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="my-tab card my-card" id="tab-gallery">
+        <div id="galleria"></div>
+      </div>
+      <div class="my-tab card my-card" id="tab-docs">
+        <h2 class="tab-header"><span class="fa fa-file-lines"></span> Documentation</h2>
+        <h3>RoboCup 2023 Bordeaux</h3>
+        <a href="/images/robots2023.jpg">
+          <img class="content-img" src="/images/robots2023-small.jpg" alt="Our team with soccer robots">
+        </a>
+        <p>This was our first time on the international RoboCup. The robot hardware was quite basic:</p>
+        <ul>
+          <li>Main processing unit (object detection, logic): <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/">Raspberry Pi 4</a></li>
+          <li>Camera: <a href="https://www.arducam.com/product/presalearducam-12mp-imx708-hdr-120-wide-angle-camera-module-with-m12-lens-for-raspberry-pi/">Arducam B0310</a> (120 FOV, 12MP), directed forward</li>
+          <li>IMU: <a href="https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/">Adafruit BNO055</a></li>
+          <li>Secondary processing unit (line sensors, motors): <a href="https://www.pjrc.com/store/teensy41.html">Teensy 4.1</a></li>
+          <li>Motors: <a href="https://www.pololu.com/product/3202">Pololu #3202</a> (1000 RPM) / <a href="https://www.pololu.com/product/3203">Pololu #3203</a> (500 RPM)</li>
+          <li>Motor driver: <a href="https://www.st.com/resource/en/datasheet/vnh5019a-e.pdf">VNH5019</a></li>
+          <li>Omni wheels: <a href="https://gtfrobots.com/product/50mm-diameter-4mm-hole-size-omni-wheel/">GTF Robots</a> (50 mm) / self made</li>
+          <li>Line sensors: <a href="https://ams-osram.com/products/leds/ir-leds/osram-midled-sfh-4656">OSRAM SFH-4656</a> + <a href="https://www.kingbrightusa.com/images/catalog/SPEC/AP2012P3C-P22.pdf">Knightbright AP2012P3C</a></li>
+        </ul>
+        <p>
+          For the software, we decided to fully utilize the potential of Raspberry Pi and use multiprocessing - every information processing and interface handling runs in the separate process.
+        </p>
+        <p>
+          More information can be found in the documentation:
+        </p>
+        <ul>
+          <li><span class="fa fa-file-pdf"></span> <a href="/docs/2023/LNX_Robots_poster.pdf">Poster</a></li>
+          <li><span class="fa fa-file-pdf"></span> <a href="/docs/2023/LNX_Robots_documentation.pdf">TDP</a></li>
+          <li><span class="fa fa-file-pdf"></span> <a href="/docs/2023/LNX_Robots_pcb-schematic.pdf">PCB schematic</a></li>
+          <li>
+            <span class="fa-brands fa-github"></span>
+            <a href="https://github.com/lnxrobots/rcj-soccer-open">Code &amp; Hardware files</a>
+          </li>
+        </ul>
       </div>
     </div>
 
