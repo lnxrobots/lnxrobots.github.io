@@ -4,6 +4,21 @@
     "thumbnail_folder": "/images/gallery/thumb/",
     "dataSource": [
         {
+            "image": "IMG_3789.jpg",
+            "title": "Resetlik the robot",
+            "description": "RoboCup 2024 Slovakia. Photo: SPŠE Zochova"
+        },
+        {
+            "image": "IMG_3783.jpg",
+            "title": "Robots of LNX Robots and XLC Younglings",
+            "description": "RoboCup 2024 Slovakia. Photo: SPŠE Zochova"
+        },
+        {
+            "image": "IMG_3778_1.jpg",
+            "title": "Preparing robots for the match",
+            "description": "RoboCup 2024 Slovakia. Photo: SPŠE Zochova"
+        },
+        {
             "image": "P1024698.JPG",
             "title": "Working on robots",
             "description": "RoboCup 2023 Bordeaux"
