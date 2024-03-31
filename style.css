@@ -65,6 +65,10 @@ body {
     aspect-ratio: 16/9;
 }
 
+.achievement-container {
+    margin-bottom: 30px;
+}
+
 .content-img {
     width: 100%;
     max-width: 800px;
