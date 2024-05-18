@@ -74,6 +74,9 @@ body {
     max-width: 800px;
     margin-bottom: 1rem;
 }
+.date {
+    display: none;
+}
 
 #galleria {
     height: 500px;

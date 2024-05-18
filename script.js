@@ -43,6 +43,17 @@ function allDescendants(element, fun) {
 
 function translate(lang, target=document.body, do_gallery=true) {
     LANG_SELECT.value = lang;
+    document.querySelectorAll('.localdate').forEach(e => e.remove());
+    for (let d of document.getElementsByClassName("date")) {
+        let d2 = document.createElement("span");
+        d2.innerText = new Date(d.innerHTML).toLocaleDateString(lang, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+        d2.className = "localdate";
+        d.parentElement.insertBefore(d2, d);
+    }
     document.getElementsByTagName("html")[0].lang = lang;
     if (lang === "en") {
         if (do_gallery) makeGallery();

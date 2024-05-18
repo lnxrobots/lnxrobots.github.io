@@ -4,6 +4,26 @@
     "thumbnail_folder": "/images/gallery/thumb/",
     "dataSource": [
         {
+            "image": "agola-2024-05-18.png",
+            "title": "Agola the robot",
+            "description": "New generation of our robots."
+        },
+        {
+            "image": "IMG_6870.jpg",
+            "title": "Presentation of our robots",
+            "description": "Istrobot 2024, Slovakia. Foto (c) Robotika.SK"
+        },
+        {
+            "image": "IMG_6281.jpg",
+            "title": "Working on robots",
+            "description": "Istrobot 2024, Slovakia. Foto (c) Robotika.SK"
+        },
+        {
+            "image": "IMG_6290.jpg",
+            "title": "Orixa the robot",
+            "description": "Istrobot 2024, Slovakia. Foto (c) Robotika.SK"
+        },
+        {
             "image": "IMG_3789.jpg",
             "title": "Resetlik the robot",
             "description": "RoboCup Junior 2024 Slovakia. Photo: SPŠE Zochova"
