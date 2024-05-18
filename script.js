@@ -89,18 +89,36 @@ function autoTranslate(target=document.body, do_gallery=true) {
 }
 
 function makeGallery(lang_data={}) {
-    let data = JSON.parse(gallery_json);
-    for (let i = 0; i < data["dataSource"].length; i++) {
-        img = data["dataSource"][i]["image"]
-        data["dataSource"][i]["image"] = data["image_folder"] + img;
-        data["dataSource"][i]["thumb"] = data["thumbnail_folder"] + img;
-        for (let key of ["title", "description"]) {
-            if (data["dataSource"][i][key] in lang_data) {
-                data["dataSource"][i][key] = lang_data[data["dataSource"][i][key]];
+    let origdata = JSON.parse(gallery_json);
+    let galleriesContainer = document.getElementById("galleries")
+    galleriesContainer.innerText = "";
+    for (let g_data of origdata["dataSource"]) {
+        let card = document.createElement("div");
+        card.className = "card my-card";
+        let name = document.createElement("h2");
+        name.innerText = g_data["name"];
+        let galleryContainer = document.createElement("div");
+        galleryContainer.style.height = "500px";
+
+        card.appendChild(name);
+        card.appendChild(galleryContainer);
+        galleriesContainer.appendChild(card);
+
+        data = {...origdata}
+        data["dataSource"] = g_data["data"];
+        for (let i = 0; i < data["dataSource"].length; i++) {
+            img = data["dataSource"][i]["image"]
+            data["dataSource"][i]["image"] = data["image_folder"] + img;
+            data["dataSource"][i]["thumb"] = data["thumbnail_folder"] + img;
+            for (let key of ["title", "description"]) {
+                if (data["dataSource"][i][key] in lang_data) {
+                    data["dataSource"][i][key] = lang_data[data["dataSource"][i][key]];
+                }
             }
         }
+        console.log(data)
+        Galleria.run(galleryContainer, data);
     }
-    Galleria.run("#galleria", data);
 }
 
 window.addEventListener("hashchange", updateTab);
