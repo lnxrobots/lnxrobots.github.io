@@ -41,8 +41,7 @@ function allDescendants(element, fun) {
     }
 }
 
-function translate(lang, target=document.body, do_gallery=true) {
-    LANG_SELECT.value = lang;
+function updateDates(lang) {
     document.querySelectorAll('.localdate').forEach(e => e.remove());
     for (let d of document.getElementsByClassName("date")) {
         let d2 = document.createElement("span");
@@ -54,6 +53,11 @@ function translate(lang, target=document.body, do_gallery=true) {
         d2.className = "localdate";
         d.parentElement.insertBefore(d2, d);
     }
+}
+
+function translate(lang, target=document.body, do_gallery=true) {
+    LANG_SELECT.value = lang;
+    updateDates(lang);
     document.getElementsByTagName("html")[0].lang = lang;
     if (lang === "en") {
         if (do_gallery) makeGallery();
@@ -79,6 +83,7 @@ function autoTranslate(target=document.body, do_gallery=true) {
         translate(navigator.language, target, do_gallery);
     } else {
         LANG_SELECT.value = "en";
+        updateDates("en");
         if (do_gallery) makeGallery();
     }
 }
