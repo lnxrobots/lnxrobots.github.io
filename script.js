@@ -107,18 +107,24 @@ function makeGallery(lang_data={}) {
         data = {...origdata}
         data["dataSource"] = g_data["data"];
         for (let i = 0; i < data["dataSource"].length; i++) {
-            img = data["dataSource"][i]["image"]
-            data["dataSource"][i]["image"] = data["image_folder"] + img;
-            data["dataSource"][i]["thumb"] = data["thumbnail_folder"] + img;
+            let img = data["dataSource"][i]["image"]
+            if (img) {
+                data["dataSource"][i]["image"] = data["image_folder"] + img;
+                data["dataSource"][i]["thumb"] = data["thumbnail_folder"] + img;
+            }
             for (let key of ["title", "description"]) {
                 if (data["dataSource"][i][key] in lang_data) {
                     data["dataSource"][i][key] = lang_data[data["dataSource"][i][key]];
                 }
             }
         }
-        console.log(data)
         Galleria.run(galleryContainer, data);
     }
+}
+
+function choose(choices) {
+    let index = Math.floor(Math.random() * choices.length);
+    return choices[index];
 }
 
 window.addEventListener("hashchange", updateTab);
@@ -148,4 +154,15 @@ fetch("/gallery.json")
     .then(data => {
         gallery_json = data
         autoTranslate();
+    });
+
+fetch("/lnx.txt")
+    .then(response => response.text())
+    .then(data => {
+        let acronym = []
+        for (let words of data.split("\n\n")) {
+            let list = words.split("\n").map(e => e.trim());
+            acronym.push(choose(list));
+        }
+        document.querySelectorAll('.acronym').forEach(e => e.innerText = acronym.join(" "))
     });
