@@ -161,7 +161,7 @@ fetch("/lnx.txt")
     .then(data => {
         let acronym = []
         for (let words of data.split("\n\n")) {
-            let list = words.split("\n").map(e => e.trim());
+            let list = words.trim().split("\n").map(e => e.trim());
             acronym.push(choose(list));
         }
         document.querySelectorAll('.acronym').forEach(e => e.innerText = acronym.join(" "))
