@@ -4,6 +4,46 @@
     "thumbnail_folder": "/images/gallery/thumb/",
     "dataSource": [
         {
+            "name": "RoboCupJunior European Championship 2024",
+            "data": [
+                {
+                    "image": "IMG_1469.jpg",
+                    "title": "LNX Robots",
+                    "description": "RoboCupJunior European Championship 2024, Hanover"
+                },
+                {
+                    "image": "IMG_1335.jpg",
+                    "title": "Preparing for the finals",
+                    "description": "RoboCupJunior European Championship 2024, Hanover"
+                },
+                {
+                    "image": "IMG_1342.jpg",
+                    "title": "Preparing for the finals",
+                    "description": "RoboCupJunior European Championship 2024, Hanover"
+                },
+                {
+                    "image": "IMG_1280.jpg",
+                    "title": "Preparing robots for the SuperTeams match",
+                    "description": "RoboCupJunior European Championship 2024, Hanover"
+                },
+                {
+                    "image": "IMG_1295.jpg",
+                    "title": "Preparing robots for the SuperTeams match",
+                    "description": "RoboCupJunior European Championship 2024, Hanover"
+                },
+                {
+                    "image": "P1025293j.jpg",
+                    "title": "Preparing robots for the match",
+                    "description": "RoboCupJunior European Championship 2024, Hanover"
+                },
+                {
+                    "image": "IMG_1448.jpg",
+                    "title": "Awards ceremony",
+                    "description": "RoboCupJunior European Championship 2024, Hanover"
+                }
+            ]
+        },
+        {
             "name": "Istrobot 2024",
             "data": [
                 {
