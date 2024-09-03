@@ -4,6 +4,51 @@
     "thumbnail_folder": "/images/gallery/thumb/",
     "dataSource": [
         {
+            "name": "RoboCup 2024 Eindhoven",
+            "data": [
+                {
+                    "image": "IMG_2254c.jpg",
+                    "title": "LNX Robots",
+                    "description": "RoboCup 2024 Eindhoven"
+                },
+                {
+                    "image": "IMG_2307c.jpg",
+                    "title": "Robots with a trophy",
+                    "description": "RoboCup 2024 Eindhoven"
+                },
+                {
+                    "image": "IMG_2066c.jpg",
+                    "title": "View from the robot's 360 degree mirror",
+                    "description": "RoboCup 2024 Eindhoven"
+                },
+                {
+                    "image": "IMG_2202.jpg",
+                    "title": "Preparing robots for the SuperTeams match",
+                    "description": "RoboCup 2024 Eindhoven"
+                },
+                {
+                    "image": "P1026111.jpg",
+                    "title": "Preparing for the match with TIGERs Mannheim",
+                    "description": "RoboCup 2024 Eindhoven"
+                },
+                {
+                    "image": "IMG_2181.jpg",
+                    "title": "RoboCup Junior with TIGERs Mannheim",
+                    "description": "RoboCup 2024 Eindhoven"
+                },
+                {
+                    "image": "2024-all-participants.jpg",
+                    "title": "All RoboCup 2024 participants",
+                    "description": "RoboCup 2024 Eindhoven"
+                },
+                {
+                    "image": "2024-junior-award-ceremony.jpg",
+                    "title": "Awards ceremony",
+                    "description": "RoboCup 2024 Eindhoven"
+                }
+            ]
+        },
+        {
             "name": "RoboCupJunior European Championship 2024",
             "data": [
                 {
