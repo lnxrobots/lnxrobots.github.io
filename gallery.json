@@ -4,6 +4,55 @@
     "thumbnail_folder": "/images/gallery/thumb/",
     "dataSource": [
         {
+            "name": "RoboCup Junior 2025 Slovakia",
+            "data": [
+                {
+                    "image": "P1026340.JPG",
+                    "title": "Assembling the new robot",
+                    "description": "RoboCup Junior 2025 Slovakia"
+                },
+                {
+                    "image": "fmb_mm-61.jpg",
+                    "title": "Nyvora the robot",
+                    "description": "RoboCup Junior 2025 Slovakia. Photo: SPŠE Zochova"
+                },
+                {
+                    "image": "fmb_mm-56.jpg",
+                    "title": "Testing the new robot's kicker",
+                    "description": "RoboCup Junior 2025 Slovakia. Photo: SPŠE Zochova"
+                },
+                {
+                    "image": "img-32.jpg",
+                    "title": "Jifyx the robot vs ZG24Robotics",
+                    "description": "RoboCup Junior 2025 Slovakia. Photo: SPŠE Zochova"
+                },
+                {
+                    "image": "IMG_4535.jpg",
+                    "title": "All 3 generations of our robots",
+                    "description": "RoboCup Junior 2025 Slovakia"
+                },
+                {
+                    "image": "IMG_4538.jpg",
+                    "title": "All 3 generations of our robots",
+                    "description": "RoboCup Junior 2025 Slovakia"
+                },
+                {
+                    "image": "IMG_4528.jpg",
+                    "title": "LNX Robots",
+                    "description": "RoboCup Junior 2025 Slovakia"
+                },
+                {
+                    "image": "P1036429.JPG",
+                    "title": "Awards ceremony",
+                    "description": "RoboCup Junior 2025 Slovakia"
+                },
+                {
+                    "image": "IMG_4585.jpg",
+                    "title": "Demonstration in Slovak morning show Teleráno"
+                }
+            ]
+        },
+        {
             "name": "RoboCup 2024 Eindhoven",
             "data": [
                 {
