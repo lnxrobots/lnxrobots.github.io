@@ -6,7 +6,7 @@ export function Gallery({ images, slug }: { images: GalleryImage[]; slug: string
     return (
       <div className="pad-chamfer border border-dashed border-copper/25 px-5 py-8 text-center">
         <p className="font-mono text-sm text-paper-faint">
-          No photos filed yet for this team.
+          No photos filed yet for this section.
         </p>
       </div>
     );

@@ -74,16 +74,16 @@ export const achievements: Achievement[] = [
     resultsUrl: "https://robocup.skse.sk/results/13/",
     youtubeId: "20twMOfppc8",
     gallery: [
-      { src: "/content/events/2025-slovakia/img-32.jpg", alt: "Jifyx the robot vs ZG24Robotics" },
-      { src: "/content/events/2025-slovakia/P1026340.JPG", alt: "Assembling the new robot" },
-      { src: "/content/events/2025-slovakia/fmb_mm-61.jpg", alt: "Nyvora the robot" },
-      { src: "/content/events/2025-slovakia/fmb_mm-56.jpg", alt: "Testing the new robot's kicker" },
-      { src: "/content/events/2025-slovakia/IMG_4535.jpg", alt: "All 3 generations of our robots" },
-      { src: "/content/events/2025-slovakia/IMG_4538.jpg", alt: "All 3 generations of our robots" },
-      { src: "/content/events/2025-slovakia/IMG_4528.jpg", alt: "LNX Robots" },
-      { src: "/content/events/2025-slovakia/P1036429.JPG", alt: "Awards ceremony" },
-      { src: "/content/events/2025-slovakia/IMG_4585.jpg", alt: "Demonstration in Slovak morning show Teleráno" }
-    ]
+      { src: "/content/events/2025-slovakia/jifyx-the-robot-vs-zg24robotics-robocup-junior-2025-slovakia-photo-spse-zochova.jpg", alt: "Jifyx the robot vs ZG24Robotics. RoboCup Junior 2025 Slovakia. Photo: SPŠE Zochova" },
+      { src: "/content/events/2025-slovakia/assembling-the-new-robot.JPG", alt: "Assembling the new robot" },
+      { src: "/content/events/2025-slovakia/nyvora-the-robot-robocup-junior-2025-slovakia-photo-spse-zochova.jpg", alt: "Nyvora the robot. RoboCup Junior 2025 Slovakia. Photo: SPŠE Zochova" },
+      { src: "/content/events/2025-slovakia/testing-the-new-robot-s-kicker.jpg", alt: "Testing the new robot's kicker" },
+      { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots" },
+      { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots-1.jpg", alt: "All 3 generations of our robots" },
+      { src: "/content/events/2025-slovakia/lnx-robots.jpg", alt: "LNX Robots" },
+      { src: "/content/events/2025-slovakia/awards-ceremony.JPG", alt: "Awards ceremony" },
+      { src: "/content/events/2025-slovakia/demonstration-in-slovak-morning-show-telerano.jpg", alt: "Demonstration in Slovak morning show Teleráno" },
+    ],
   },
   {
     id: "2024-eindhoven",
@@ -98,6 +98,16 @@ export const achievements: Achievement[] = [
       { label: "Top Poster and Presentation Award", tier: "special" },
     ],
     youtubeId: "YnFQOK-M96Y",
+    gallery: [
+      { src: "/content/events/2024-eindhoven/lnx-robots.jpg", alt: "LNX Robots" },
+      { src: "/content/events/2024-eindhoven/robots-with-a-trophy.jpg", alt: "Robots with a trophy" },
+      { src: "/content/events/2024-eindhoven/view-from-the-robot-s-360-degree-mirror.jpg", alt: "View from the robot's 360 degree mirror" },
+      { src: "/content/events/2024-eindhoven/preparing-robots-for-the-superteams-match.jpg", alt: "Preparing robots for the SuperTeams match" },
+      { src: "/content/events/2024-eindhoven/preparing-for-the-match-with-tigers-mannheim.jpg", alt: "Preparing for the match with TIGERs Mannheim" },
+      { src: "/content/events/2024-eindhoven/robocup-junior-with-tigers-mannheim.jpg", alt: "RoboCup Junior with TIGERs Mannheim" },
+      { src: "/content/events/2024-eindhoven/all-robocup-2024-participants-robocup-2024-eindhoven.jpg", alt: "All RoboCup 2024 participants. RoboCup 2024 Eindhoven" },
+      { src: "/content/events/2024-eindhoven/awards-ceremony.jpg", alt: "Awards ceremony" },
+    ],
   },
   {
     id: "2024-europe",
@@ -110,6 +120,15 @@ export const achievements: Achievement[] = [
     resultsUrl:
       "https://2024.robocupjunior.eu/wp-content/uploads/2024/06/Open-International-Standings-Day-4.pdf",
     youtubeId: "ycy4akEXcko",
+    gallery: [
+      { src: "/content/events/2024-europe/lnx-robots-robocupjunior-european-championship-2024-hanover.jpg", alt: "LNX Robots. RoboCupJunior European Championship 2024, Hanover" },
+      { src: "/content/events/2024-europe/preparing-for-the-finals-robocupjunior-european-championship-2024-hanover.jpg", alt: "Preparing for the finals. RoboCupJunior European Championship 2024, Hanover" },
+      { src: "/content/events/2024-europe/preparing-for-the-finals-robocupjunior-european-championship-2024-hanover-1.jpg", alt: "Preparing for the finals. RoboCupJunior European Championship 2024, Hanover" },
+      { src: "/content/events/2024-europe/preparing-robots-for-the-superteams-match.jpg", alt: "Preparing robots for the SuperTeams match" },
+      { src: "/content/events/2024-europe/preparing-robots-for-the-superteams-match-1.jpg", alt: "Preparing robots for the SuperTeams match" },
+      { src: "/content/events/2024-europe/preparing-robots-for-the-match.jpg", alt: "Preparing robots for the match" },
+      { src: "/content/events/2024-europe/awards-ceremony-robocupjunior-european-championship-2024-hanover.jpg", alt: "Awards ceremony. RoboCupJunior European Championship 2024, Hanover" },
+    ],
   },
   {
     id: "2024-croatia",
@@ -134,6 +153,13 @@ export const achievements: Achievement[] = [
     ],
     resultsUrl: "https://robocup.skse.sk/results/3/",
     youtubeId: "muNbSWIVRXY",
+    gallery: [
+      { src: "/content/events/2024-slovakia/resetlik-the-robot-robocup-junior-2024-slovakia-photo-spse-zochova.jpg", alt: "Resetlik the robot. RoboCup Junior 2024 Slovakia. Photo: SPŠE Zochova" },
+      { src: "/content/events/2024-slovakia/robots-of-lnx-robots-and-xlc-younglings.jpg", alt: "Robots of LNX Robots and XLC Younglings" },
+      { src: "/content/events/2024-slovakia/preparing-robots-for-the-match-robocup-junior-2024-slovakia-photo-spse-zochova.jpg", alt: "Preparing robots for the match. RoboCup Junior 2024 Slovakia. Photo: SPŠE Zochova" },
+      { src: "/content/events/2024-slovakia/working-on-robots.JPG", alt: "Working on robots" },
+      { src: "/content/events/2024-slovakia/awards-ceremony.jpg", alt: "Awards ceremony" },
+    ],
   },
   {
     id: "2023-bordeaux",
@@ -147,6 +173,14 @@ export const achievements: Achievement[] = [
       { label: "1st place, Junior Soccer Open SuperTeam", tier: "gold" },
     ],
     youtubeId: "3-lUAyqajDM",
+    gallery: [
+      { src: "/content/events/2023-bordeaux/working-on-robots.JPG", alt: "Working on robots" },
+      { src: "/content/events/2023-bordeaux/calibrating-robots.JPG", alt: "Calibrating robots" },
+      { src: "/content/events/2023-bordeaux/lnx-robots-and-i-bots-2.JPG", alt: "LNX Robots and i-bots 2" },
+      { src: "/content/events/2023-bordeaux/lnx-robots-and-mapletech-nebula.JPG", alt: "LNX Robots and Mapletech Nebula" },
+      { src: "/content/events/2023-bordeaux/awards-ceremony.jpg", alt: "Awards ceremony" },
+      { src: "/content/events/2023-bordeaux/robots-at-the-ocean.jpg", alt: "Robots at the ocean" },
+    ],
   },
   {
     id: "2023-varazdin",
