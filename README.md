@@ -33,30 +33,52 @@ a static site in `/out` that can be pushed straight to the
 ## Project structure
 
 ```
-src/
-  app/                 routes (App Router)
-    page.tsx           homepage
-    teams/              team index + /teams/[slug]
-    achievements/        full results timeline
-    docs/                documentation library (auto-grouped by year)
-    about/               club info, contact, sponsors
-  components/
-    pcb/                trace/via primitives and the circuit background
-    ui/                  Pad, SectionLabel, PageHeader, DisciplineTag
-    layout/              Navbar, Footer
-    home/                homepage-only sections
-    teams/                team-specific components (roster cards, campaign spec table, docs, gallery)
-    achievements/         timeline + result badge
-    sponsors/             sponsor tile (logo optional)
-  data/                   ALL editable content lives here — see CONTENT_GUIDE.md
-  lib/                    small formatting/utility helpers
-public/
-  content/
-    team-2023/ team-2024/ team-2025/ ...
-      docs/               PDFs, zips
-      images/             competition/team photos
-      members/            member and mentor headshots
-    sponsors/             sponsor logo files
+lnx-robots-website/
+├── src/
+│   ├── app/                        # Next.js App Router — one folder per route
+│   │   ├── page.tsx                  # Homepage
+│   │   ├── layout.tsx                # Root layout (fonts, nav, footer, metadata)
+│   │   ├── globals.css               # Global styles
+│   │   ├── not-found.tsx             # 404 page
+│   │   ├── icon.svg                  # Favicon
+│   │   ├── fonts/                    # Local font files + font config
+│   │   ├── about/page.tsx            # /about
+│   │   ├── teams/
+│   │   │   ├── page.tsx              # /teams (all teams)
+│   │   │   └── [slug]/page.tsx       # /teams/team-1 (one team's page)
+│   │   ├── achievements/
+│   │   │   ├── page.tsx              # /achievements (timeline)
+│   │   │   └── [id]/page.tsx         # /achievements/2025-slovakia (one result)
+│   │   └── docs/page.tsx             # /docs (documentation library)
+│   │
+│   ├── components/                 # React components, grouped by area
+│   │   ├── home/                     # Homepage sections (Hero, TeamsPreview, etc.)
+│   │   ├── teams/                    # Team cards, member cards, spec tables, galleries
+│   │   ├── achievements/             # Timeline, result badges, event galleries
+│   │   ├── sponsors/                 # Sponsor tiles
+│   │   ├── layout/                   # Navbar, Footer
+│   │   ├── pcb/                      # Circuit-board decorative background/graphics
+│   │   └── ui/                       # Shared building blocks (PageHeader, SectionLabel, etc.)
+│   │
+│   ├── data/                       # Site content as plain TypeScript objects
+│   │   ├── site.ts                   # Club name, tagline, contact, social links, next event
+│   │   ├── teams.ts                  # Teams, members, mentors, campaigns
+│   │   ├── achievements.ts           # Competition results
+│   │   ├── sponsors.ts               # Sponsor list
+│   │   ├── disciplines.ts            # Competition/discipline definitions
+│   │   └── types.ts                  # Shared TypeScript types for the data above
+│   │
+│   └── lib/utils.ts                # Small shared helper functions
+│
+├── public/content/                 # Static assets referenced by the data files
+│   ├── team-1/                       # Per-team images, member photos, docs
+│   ├── sponsors/                     # Sponsor logos
+│   └── events/                       # Event photo galleries
+│
+├── CONTENT_GUIDE.md                # How to add teams, campaigns, and results (no code needed)
+├── tailwind.config.ts               # Tailwind theme config
+├── next.config.mjs                  # Next.js config
+└── package.json                     # Dependencies and scripts
 ```
 
 ## Adding content
