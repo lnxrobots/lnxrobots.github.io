@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  scrollbar-color: #3a463f #0c1210;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: #000000;
+  color: #eeeae1;
+}
+
+::selection {
+  background: #c98a4b;
+  color: #0c1210;
+}
+
+/* Visible keyboard focus everywhere, styled like a lit-up pad. */
+:focus-visible {
+  outline: 2px solid #7fe7c4;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Reusable "pad" shape: mostly-square with one chamfered corner, like a
+   component footprint silkscreen marking pin 1. This is the one repeated
+   signature shape across the whole site instead of a generic border-radius. */
+.pad-chamfer {
+  clip-path: polygon(0 18px, 18px 0, 100% 0, 100% 100%, 0 100%);
+}
+.pad-chamfer-sm {
+  clip-path: polygon(0 10px, 10px 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
