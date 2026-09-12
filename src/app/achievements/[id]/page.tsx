@@ -10,6 +10,7 @@ import { DisciplineTag } from "@/components/ui/DisciplineTag";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { formatDate } from "@/lib/utils";
+import { Fragment } from "react";
 
 export function generateStaticParams() {
   return achievements.map((a) => ({ id: a.id }));
@@ -34,13 +35,18 @@ export default async function AchievementDetailPage({
   const achievement = getAchievement(id);
   if (!achievement) notFound();
 
-  const team = getTeam(achievement.team);
-  const discipline = getDiscipline(achievement.discipline);
+  const teams = (Array.isArray(achievement.team) ? achievement.team : [achievement.team]).map((slug) => {
+    return getTeam(slug);
+  });
+  const disciplines = (Array.isArray(achievement.discipline) ? achievement.discipline : [achievement.discipline]).map((slug) => {
+    return getDiscipline(slug)?.shortName ?? slug;
+  })
+  const disciplineText = disciplines.join(", ")
 
   return (
     <>
       <PageHeader
-        eyebrow={`${discipline?.shortName ?? achievement.discipline} · ${formatDate(achievement.date)}`}
+        eyebrow={`${disciplineText} · ${formatDate(achievement.date)}`}
         title={achievement.event}
         description={achievement.location}
       />
@@ -54,15 +60,22 @@ export default async function AchievementDetailPage({
         </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm">
-          {team && (
+          {teams && (
             <span className="text-paper-muted">
-              Team:{" "}
-              <Link
-                href={`/teams/${team.slug}`}
-                className="text-copper/80 hover:text-copper-bright"
-              >
-                {team.name}
-              </Link>
+              Team{teams.length > 1 && "s"}:{" "}
+              {teams.map((team, i) => {
+                return team && (
+                  <span key={i}>
+                    {i !== 0 && ", "}
+                    <Link
+                      href={`/teams/${team.slug}`}
+                      className="text-copper/80 hover:text-copper-bright"
+                    >
+                      {team?.name}
+                    </Link>
+                  </span>
+                )
+              })}
             </span>
           )}
           {achievement.resultsUrl && (

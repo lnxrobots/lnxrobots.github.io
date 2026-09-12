@@ -31,6 +31,16 @@ import { Achievement } from "./types";
  */
 export const achievements: Achievement[] = [
   {
+    id: "2026-incheon",
+    event: "RoboCup World Championship",
+    location: "Incheon, South Korea",
+    date: "2026-07-01",
+    discipline: "rcj-soccer-open",
+    team: "team-1",
+    results: [
+    ],
+  },
+  {
     id: "2026-vienna",
     event: "RoboCup Junior European Championship",
     location: "Vienna, Austria",
@@ -43,28 +53,17 @@ export const achievements: Achievement[] = [
     resultsUrl: "https://catigoal.com/RCJE26/matches?league=2v2IR&league_stage=2"
   },
   {
-    id: "2026-slovakia-team-2",
+    id: "2026-slovakia",
     event: "RoboCup Junior Slovakia",
     location: "Nitra, Slovakia",
     date: "2026-04-22",
-    discipline: "rcj-soccer-infra",
-    team: "team-2",
+    discipline: ["rcj-soccer-open", "rcj-soccer-infra"],
+    team: ["team-1", "team-2"],
     results: [
-      { label: "1st place, Junior Soccer InfraRed", tier: "gold" },
+      { label: "Team-1: 1st place, Junior Soccer Open", tier: "gold" },
+      { label: "Team-2: 1st place, Junior Soccer InfraRed", tier: "gold" },
     ],
     youtubeId: "HYZebtlfnE0",
-  },
-  {
-    id: "2026-slovakia-team-1",
-    event: "RoboCup Junior Slovakia",
-    location: "Nitra, Slovakia",
-    date: "2026-04-22",
-    discipline: "rcj-soccer-open",
-    team: "team-1",
-    results: [
-      { label: "1st place, Junior Soccer Open", tier: "gold" },
-    ],
-    youtubeId: "HYZebtlfnE0&t=69",
   },
   {
     id: "2025-salvador",

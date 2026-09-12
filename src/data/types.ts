@@ -11,12 +11,12 @@ export interface Achievement {
   /** Competition name, e.g. "RoboCup World Championship" */
   event: string;
   /** Which league/discipline this result was in — slug from src/data/disciplines.ts */
-  discipline: string;
+  discipline: string | string[];
   location: string;
   /** ISO date (start date if the event spans multiple days) */
   date: string;
   /** Which team competed — slug from src/data/teams.ts */
-  team: TeamSlug;
+  team: TeamSlug | TeamSlug[];
   results: Result[];
   /** Optional external results/standings link */
   resultsUrl?: string;

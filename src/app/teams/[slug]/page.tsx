@@ -50,7 +50,7 @@ export default async function TeamDetailPage({
   const team = getTeam(slug);
   if (!team) notFound();
 
-  const teamAchievements = achievements.filter((a) => a.team === team.slug);
+  const teamAchievements = achievements.filter((a) => a.team === team.slug || Array.isArray(a.team) && a.team.includes(team.slug));
   const campaigns = sortedCampaigns(team);
 
   return (

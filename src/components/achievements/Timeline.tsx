@@ -17,7 +17,10 @@ export function Timeline({ items }: { items: Achievement[] }) {
     <ol className="relative">
       <div className="absolute bottom-2 left-[7px] top-2 w-px bg-copper/25" aria-hidden="true" />
       {items.map((a) => {
-        const team = getTeam(a.team);
+        const teamNames = (Array.isArray(a.team) ? a.team : [a.team]).map((slug) => {
+          return getTeam(slug)?.name ?? slug;
+        });
+        const teamText = teamNames.join(", ");
         const cover = a.gallery?.[0];
         const [topResult, ...rest] = a.results;
 
@@ -47,7 +50,7 @@ export function Timeline({ items }: { items: Achievement[] }) {
                 </h3>
                 <p className="truncate font-mono text-xs text-paper-muted">
                   {a.location}
-                  {team && ` · ${team.name}`}
+                  {teamText && ` · ${teamText}`}
                 </p>
                 <div className="mt-2 flex flex-wrap items-center gap-2">
                   <DisciplineTag slug={a.discipline} />
