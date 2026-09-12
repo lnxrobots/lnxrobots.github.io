@@ -9,6 +9,7 @@ import { aquireBold } from "@/app/fonts/fonts";
 const links = [
   { href: "/teams", label: "Teams" },
   { href: "/achievements", label: "Achievements" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/docs", label: "Docs" },
   { href: "/about", label: "About" },
 ];

@@ -102,7 +102,7 @@ export default async function AchievementDetailPage({
 
         <div className="mt-12">
           <SectionLabel>gallery</SectionLabel>
-          <EventGallery images={achievement.gallery ?? []} id={achievement.id} />
+          <EventGallery images={achievement.gallery ?? []} />
         </div>
 
         <div className="mt-12">

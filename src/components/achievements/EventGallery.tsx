@@ -1,7 +1,7 @@
 import { GalleryImage } from "@/data/types";
 import { LightboxGrid } from "@/components/ui/LightboxGrid";
 
-export function EventGallery({ images, id }: { images: GalleryImage[]; id: string }) {
+export function EventGallery({ images }: { images: GalleryImage[] }) {
   if (images.length === 0) {
     return (
       <div className="pad-chamfer border border-dashed border-copper/25 px-5 py-8 text-center">

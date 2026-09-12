@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Achievement } from "@/data/types";
 import { ResultBadge } from "./ResultBadge";
 import { DisciplineTag } from "@/components/ui/DisciplineTag";
@@ -21,7 +20,6 @@ export function Timeline({ items }: { items: Achievement[] }) {
           return getTeam(slug)?.name ?? slug;
         });
         const teamText = teamNames.join(", ");
-        const cover = a.gallery?.[0];
         const [topResult, ...rest] = a.results;
 
         return (
@@ -37,12 +35,6 @@ export function Timeline({ items }: { items: Achievement[] }) {
               href={`/achievements/${a.id}`}
               className="group -mx-3 flex items-center gap-4 border border-transparent px-3 py-3 pad-chamfer-sm transition-colors hover:border-copper/25 hover:bg-board-raised/60"
             >
-              {cover && (
-                <div className="pad-chamfer-sm relative hidden h-14 w-20 shrink-0 overflow-hidden border border-copper/15 sm:block">
-                  <Image src={cover.src} alt="" fill className="object-cover" />
-                </div>
-              )}
-
               <div className="min-w-0 flex-1">
                 <p className="font-mono text-xs text-paper-faint">{formatDate(a.date)}</p>
                 <h3 className="mt-0.5 truncate font-display text-lg text-paper group-hover:text-signal-bright">
