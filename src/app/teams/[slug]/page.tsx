@@ -100,7 +100,6 @@ export default async function TeamDetailPage({
           <SectionLabel>competitions &amp; builds</SectionLabel>
           <p className="max-w-xl font-body text-sm text-paper-muted">
             Every competition this team has entered, each with its own build.
-            A team can run more than one of these at once.
           </p>
 
           {campaigns.length === 0 ? (
@@ -148,7 +147,7 @@ export default async function TeamDetailPage({
                               rel="noreferrer"
                               className="font-mono text-sm text-signal/80 underline decoration-signal/30 underline-offset-4 hover:text-signal-bright"
                             >
-                              Software repository →
+                              Repository →
                             </a>
                           )}
                           {c.hardwareRepo && (

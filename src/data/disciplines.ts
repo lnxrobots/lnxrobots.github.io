@@ -30,8 +30,8 @@ export const disciplines: Discipline[] = [
   },
   {
     slug: "rcj-soccer-infra",
-    name: "RoboCupJunior Soccer — Infra",
-    shortName: "Soccer Infra",
+    name: "RoboCupJunior Soccer — InfraRed",
+    shortName: "Soccer InfraRed",
     org: "RoboCupJunior",
     url: "https://junior.robocup.org/rcj-soccer/",
   },
