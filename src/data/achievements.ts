@@ -1,3 +1,4 @@
+import { getTeam } from "./teams";
 import { Achievement } from "./types";
 
 /**
@@ -37,8 +38,8 @@ export const achievements: Achievement[] = [
     date: "2026-07-01",
     discipline: "rcj-soccer-open",
     team: "team-1",
-    results: [
-    ],
+    results: [],
+    resultsUrl: "https://catigoal.com/RCJI26/standings?league=V&league_stage=6",
   },
   {
     id: "2026-vienna",
@@ -48,9 +49,9 @@ export const achievements: Achievement[] = [
     discipline: "rcj-soccer-infra",
     team: "team-2",
     results: [
-      { label: "1st place, Junior Soccer InfraRed", tier: "gold" },
+      { label: "1st place, Soccer InfraRed", tier: "gold" },
     ],
-    resultsUrl: "https://catigoal.com/RCJE26/matches?league=2v2IR&league_stage=2"
+    resultsUrl: "https://catigoal.com/RCJE26/matches?league=2v2IR&league_stage=2",
   },
   {
     id: "2026-slovakia",
@@ -60,8 +61,8 @@ export const achievements: Achievement[] = [
     discipline: ["rcj-soccer-open", "rcj-soccer-infra"],
     team: ["team-1", "team-2"],
     results: [
-      { label: "Team-1: 1st place, Junior Soccer Open", tier: "gold" },
-      { label: "Team-2: 1st place, Junior Soccer InfraRed", tier: "gold" },
+      { label: getTeam("team-1")?.name + ": 1st place, Soccer Open", tier: "gold" },
+      { label: getTeam("team-2")?.name + ": 1st place, Soccer InfraRed", tier: "gold" },
     ],
     youtubeId: "HYZebtlfnE0",
   },
