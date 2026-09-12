@@ -14,6 +14,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Pad } from "@/components/ui/Pad";
 import { formatDate, cn } from "@/lib/utils";
+import { Timeline } from "@/components/achievements/Timeline";
 
 export function generateStaticParams() {
   return teams.map((t) => ({ slug: t.slug }));
@@ -188,22 +189,9 @@ export default async function TeamDetailPage({
         {teamAchievements.length === 0 ? (
           <p className="font-mono text-sm text-paper-faint">No competitions logged yet.</p>
         ) : (
-          <ul className="space-y-4">
-            {teamAchievements.map((a) => (
-              <li key={a.id} className="border-l-2 border-copper/25 pl-4">
-                <p className="font-body text-sm text-paper">{a.event}</p>
-                <p className="font-mono text-xs text-paper-faint">
-                  {a.location} · {formatDate(a.date)}
-                </p>
-                <div className="mt-2 flex flex-wrap items-center gap-2">
-                  <DisciplineTag slug={a.discipline} />
-                  {a.results.map((r, i) => (
-                    <ResultBadge key={i} result={r} />
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div className="max-w-4xl mx-auto">
+            <Timeline items={teamAchievements} />
+          </div>
         )}
       </div>
 

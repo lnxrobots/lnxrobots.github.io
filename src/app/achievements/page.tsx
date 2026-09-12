@@ -13,7 +13,7 @@ export default function AchievementsPage() {
         title="Achievements &amp; Events"
         description="Every result since our first Slovak-nationals win in 2023. Click into any of them for photos, video, and standings."
       />
-      <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8">
+      <div className="mx-auto max-w-4xl px-5 py-14 sm:px-8">
         <Timeline items={achievements} />
       </div>
     </>
