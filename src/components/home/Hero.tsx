@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CircuitBackground } from "@/components/pcb/CircuitBackground";
 import { CountdownReadout } from "./CountdownReadout";
 import { site } from "@/data/site";
+import Image from "next/image";
 
 export function Hero() {
   return (
@@ -39,8 +40,14 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="lg:justify-self-end w-full max-w-sm">
+        <div className="lg:justify-self-end w-full max-w-sm z-10 lg:absolute lg:bottom-10 lg:right-32">
           <CountdownReadout />
+        </div>
+
+        <div className="max-w-md w-full aspect-square absolute hidden lg:block pad-chamfer group border border-signal/15 bg-board-raised/90 right-5 top-8">
+          <Image src="/content/cover.jpg" alt="Nyvora the robot" fill />
+          <div className="w-full h-full absolute bg-gradient-to-b from-board/10 via-board/50 to-board">
+          </div>
         </div>
       </div>
     </section>
