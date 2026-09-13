@@ -12,7 +12,7 @@ export function TeamsPreview() {
         People come and go
       </h2>
       <p className="mt-3 max-w-lg font-body text-sm leading-relaxed text-paper-muted">
-        We have one mentor who's been with the club the whole time.
+        We have one mentor who&apos;s been with the club the whole time.
         The teams themselves change more — every season some people graduate out and new ones join in.
       </p>
 

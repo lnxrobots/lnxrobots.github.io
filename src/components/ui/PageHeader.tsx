@@ -15,7 +15,7 @@ export function PageHeader({
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-board/40 via-board/80 to-board" />
       <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         <p className="font-mono text-sm text-signal/80">
-          <span className="text-copper/60">// </span>
+          <span className="text-copper/60">{"// "}</span>
           {eyebrow}
         </p>
         <h1 className="mt-3 max-w-2xl text-balance font-display text-4xl font-medium text-paper sm:text-5xl">

@@ -17,7 +17,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="font-mono text-xs text-copper/70 mb-3">// elsewhere</p>
+            <p className="font-mono text-xs text-copper/70 mb-3">{"// "}elsewhere</p>
             <ul className="space-y-2 font-body text-sm text-paper-muted">
               <li>
                 <a href={site.social.github} className="hover:text-signal-bright">
@@ -43,7 +43,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="font-mono text-xs text-copper/70 mb-3">// site</p>
+            <p className="font-mono text-xs text-copper/70 mb-3">{"// "}site</p>
             <ul className="space-y-2 font-body text-sm text-paper-muted">
               <li>
                 <Link href="/teams" className="hover:text-signal-bright">

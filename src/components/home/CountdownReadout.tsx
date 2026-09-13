@@ -18,10 +18,9 @@ function pad(n: number) {
 }
 
 export function CountdownReadout() {
-  const [remaining, setRemaining] = useState<ReturnType<typeof getRemaining> | null>(null);
+  const [remaining, setRemaining] = useState(getRemaining(site.nextEvent.start));
 
   useEffect(() => {
-    setRemaining(getRemaining(site.nextEvent.start));
     const id = setInterval(() => setRemaining(getRemaining(site.nextEvent.start)), 1000);
     return () => clearInterval(id);
   }, []);

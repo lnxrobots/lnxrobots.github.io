@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-board/40 via-board/85 to-board" />
       <div className="relative mx-auto flex max-w-2xl flex-col items-start px-5 py-28 sm:px-8">
         <p className="font-mono text-sm text-signal/80">
-          <span className="text-copper/60">// </span>
+          <span className="text-copper/60">{"// "}</span>
           trace not found
         </p>
         <h1 className="mt-3 font-display text-4xl text-paper sm:text-5xl">

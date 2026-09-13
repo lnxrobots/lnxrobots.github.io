@@ -14,7 +14,7 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[1.444fr,1fr] lg:items-end">
         <div>
           <p className="font-mono text-sm text-signal/80">
-            <span className="text-copper/70">// </span>
+            <span className="text-copper/70">{"// "}</span>
             {site.location} — student robotics club
           </p>
           <h1 className="mt-4 text-balance font-display text-4xl font-medium leading-[1.08] text-paper sm:text-5xl lg:text-6xl">
