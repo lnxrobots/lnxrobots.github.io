@@ -1,5 +1,5 @@
-import AchievementVideos from "@/components/achievements/AchievementVideos";
-import { EventGallery } from "@/components/achievements/EventGallery";
+import { EventVideos } from "@/components/event/EventVideos";
+import { EventGallery } from "@/components/event/EventGallery";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { achievements } from "@/data/achievements";
 import { getTeam } from "@/data/teams";
@@ -78,7 +78,7 @@ export default function GalleryPage() {
 
                   <Link
                     className="shrink-0 font-mono text-xs text-signal/70 hover:text-signal-bright sm:block absolute inset-0"
-                    href={`/achievements/${a.id}`}
+                    href={`/event/${a.id}`}
                   >
                     <div className="w-full h-full flex items-center justify-end">
                       View event →
@@ -87,7 +87,7 @@ export default function GalleryPage() {
                 </div>
 
                 {a.videos && (
-                  <AchievementVideos achievement={a} />
+                  <EventVideos achievement={a} />
                 )}
 
                 {a.gallery && (

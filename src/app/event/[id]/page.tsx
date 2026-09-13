@@ -4,13 +4,13 @@ import { notFound } from "next/navigation";
 import { achievements, getAchievement } from "@/data/achievements";
 import { getTeam } from "@/data/teams";
 import { getDiscipline } from "@/data/disciplines";
-import { ResultBadge } from "@/components/achievements/ResultBadge";
-import { EventGallery } from "@/components/achievements/EventGallery";
+import { ResultBadge } from "@/components/event/ResultBadge";
+import { EventGallery } from "@/components/event/EventGallery";
 import { DisciplineTag } from "@/components/ui/DisciplineTag";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { formatDate } from "@/lib/utils";
-import AchievementVideos from "@/components/achievements/AchievementVideos";
+import { EventVideos } from "@/components/event/EventVideos";
 
 export function generateStaticParams() {
   return achievements.map((a) => ({ id: a.id }));
@@ -60,7 +60,7 @@ export default async function AchievementDetailPage({ params }: { params: Promis
                   <span key={i}>
                     {i !== 0 && ", "}
                     <Link
-                      href={`/teams/${team.slug}`}
+                      href={`/team/${team.slug}`}
                       className="text-copper/80 hover:text-copper-bright"
                     >
                       {team?.name}
@@ -82,7 +82,7 @@ export default async function AchievementDetailPage({ params }: { params: Promis
           )}
         </div>
 
-        <AchievementVideos achievement={achievement} />
+        <EventVideos achievement={achievement} />
 
         <div className="mt-12">
           <SectionLabel>gallery</SectionLabel>

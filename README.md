@@ -44,11 +44,13 @@ lnx-robots-website/
 │   │   ├── fonts/                    # Local font files + font config
 │   │   ├── about/page.tsx            # /about
 │   │   ├── teams/
-│   │   │   ├── page.tsx              # /teams (all teams)
-│   │   │   └── [slug]/page.tsx       # /teams/team-1 (one team's page)
+│   │   │   └── page.tsx              # /teams (all teams)
+│   │   ├── team/
+│   │   │   └── [slug]/page.tsx       # /team/team-1 (one team's page)
 │   │   ├── achievements/
-│   │   │   ├── page.tsx              # /achievements (timeline)
-│   │   │   └── [id]/page.tsx         # /achievements/2025-slovakia (one result)
+│   │   │   └── page.tsx              # /achievements (timeline)
+│   │   ├── event/
+│   │   │   └── [id]/page.tsx         # /event/2025-slovakia (one result)
 │   │   └── docs/page.tsx             # /docs (documentation library)
 │   │
 │   ├── components/                 # React components, grouped by area

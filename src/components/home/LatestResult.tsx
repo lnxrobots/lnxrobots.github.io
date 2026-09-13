@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { achievements } from "@/data/achievements";
 import { getTeam } from "@/data/teams";
-import { ResultBadge } from "@/components/achievements/ResultBadge";
+import { ResultBadge } from "@/components/event/ResultBadge";
 import { DisciplineTag } from "@/components/ui/DisciplineTag";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { formatDate } from "@/lib/utils";
@@ -20,7 +20,7 @@ export function LatestResult() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="font-display text-2xl text-paper sm:text-3xl">
-              <Link href={`/achievements/${latest.id}`} className="hover:text-signal-bright">
+              <Link href={`/event/${latest.id}`} className="hover:text-signal-bright">
                 {latest.event}
               </Link>
             </h2>
@@ -34,7 +34,7 @@ export function LatestResult() {
                       <span key={i}>
                         {i !== 0 && ", "}
                         <Link
-                          href={`/teams/${team.slug}`}
+                          href={`/team/${team.slug}`}
                           className="text-copper/80 hover:text-copper-bright"
                         >
                           {team?.name}

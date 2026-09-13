@@ -6,7 +6,7 @@ import { Achievement } from "./types";
  * `discipline` to any slug from src/data/disciplines.ts (add a new one
  * there first if needed) to log a result from RoboRAVE or anything else.
  *
- * Each result gets its own dedicated page at /achievements/<id> (built
+ * Each result gets its own dedicated page at /event/<id> (built
  * automatically from `id`) so the /achievements timeline can stay compact
  * while the full write-up — video, standings link, and an optional photo
  * gallery — lives one click away.

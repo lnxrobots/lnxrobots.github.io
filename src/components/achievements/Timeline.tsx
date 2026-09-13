@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { Achievement } from "@/data/types";
-import { ResultBadge } from "./ResultBadge";
 import { DisciplineTag } from "@/components/ui/DisciplineTag";
 import { formatDate } from "@/lib/utils";
 import { getTeam } from "@/data/teams";
+import { ResultBadge } from "../event/ResultBadge";
 
 /**
  * Compact, scannable timeline — one row per result. Each row links to that
- * event's own dedicated page (/achievements/[id]) for the full write-up,
+ * event's own dedicated page (/event/[id]) for the full write-up,
  * video, standings link, and photo gallery, so this list doesn't have to
  * carry all of that itself.
  */
@@ -81,7 +81,7 @@ export function Timeline({ items }: { items: Achievement[] }) {
 
               <Link
                 className="shrink-0 font-mono text-xs text-signal/70 hover:text-signal-bright sm:block absolute inset-0"
-                href={`/achievements/${a.id}`}
+                href={`/event/${a.id}`}
               >
                 <div className="w-full h-full flex items-center justify-end">
                   View event →

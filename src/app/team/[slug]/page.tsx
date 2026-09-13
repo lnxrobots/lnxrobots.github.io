@@ -8,12 +8,10 @@ import { RobotSpecTable } from "@/components/teams/RobotSpecTable";
 import { DocList } from "@/components/teams/DocList";
 import { Gallery } from "@/components/teams/Gallery";
 import { PersonCard } from "@/components/teams/PersonCard";
-import { ResultBadge } from "@/components/achievements/ResultBadge";
-import { DisciplineTag } from "@/components/ui/DisciplineTag";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Pad } from "@/components/ui/Pad";
-import { formatDate, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Timeline } from "@/components/achievements/Timeline";
 
 export function generateStaticParams() {

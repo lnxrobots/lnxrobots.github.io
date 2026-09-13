@@ -10,7 +10,7 @@ export function TeamCard({ team }: { team: Team }) {
   const disciplines = teamDisciplines(team);
 
   return (
-    <Link href={`/teams/${team.slug}`} className="group block h-full">
+    <Link href={`/team/${team.slug}`} className="group block h-full">
       <Pad className="flex h-full flex-col p-6 transition-colors group-hover:border-copper/50">
         <div className="flex items-start justify-between gap-3">
           <div>
