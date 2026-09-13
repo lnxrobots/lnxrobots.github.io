@@ -24,7 +24,9 @@ import { Achievement } from "./types";
  *   team: "team-1",                   // see src/data/teams.ts
  *   results: [{ label: "1st place, ...", tier: "gold" }],
  *   resultsUrl: "https://...",        // optional
- *   youtubeId: "...",                 // optional
+ *   videos: [                      // optional
+ *     { title: "...", id: "..." },
+ *   ],
  *   gallery: [                        // optional — omit entirely if you have no photos yet
  *     { src: "/content/events/20XX-city/photo.jpg", alt: "Describe the photo" },
  *   ],
@@ -52,6 +54,9 @@ export const achievements: Achievement[] = [
       { label: "1st place, Soccer InfraRed", tier: "gold" },
     ],
     resultsUrl: "https://catigoal.com/RCJE26/matches?league=2v2IR&league_stage=2",
+    videos: [
+      { id: "seq0j9T9f8k?t=2999", title: "Finals video" },
+    ]
   },
   {
     id: "2026-slovakia",
@@ -64,7 +69,9 @@ export const achievements: Achievement[] = [
       { label: getTeam("team-1")?.name + ": 1st place, Soccer Open", tier: "gold" },
       { label: getTeam("team-2")?.name + ": 1st place, Soccer InfraRed", tier: "gold" },
     ],
-    youtubeId: "HYZebtlfnE0",
+    videos: [
+      { id: "HYZebtlfnE0", title: "Match video" },
+    ]
   },
   {
     id: "2025-salvador",
@@ -77,7 +84,9 @@ export const achievements: Achievement[] = [
       { label: "2nd place, Junior Soccer Open", tier: "silver" },
       { label: "Exemplary Team Award", tier: "special" },
     ],
-    youtubeId: "Y5WyA96kV70",
+    videos: [
+      { id: "Y5WyA96kV70", title: "Match video" },
+    ],
   },
   {
     id: "2025-bari",
@@ -108,7 +117,9 @@ export const achievements: Achievement[] = [
     team: "team-1",
     results: [{ label: "1st place, Soccer Open", tier: "gold" }],
     resultsUrl: "https://robocup.skse.sk/results/13/",
-    youtubeId: "20twMOfppc8",
+    videos: [
+      { id: "20twMOfppc8", title: "Match video" },
+    ],
     gallery: [
       { src: "/content/events/2025-slovakia/jifyx-the-robot-vs-zg24robotics-robocup-junior-2025-slovakia-photo-spse-zochova.jpg", alt: "Jifyx the robot vs ZG24Robotics. RoboCup Junior 2025 Slovakia. Photo: SPŠE Zochova" },
       { src: "/content/events/2025-slovakia/assembling-the-new-robot.JPG", alt: "Assembling the new robot" },
@@ -133,7 +144,9 @@ export const achievements: Achievement[] = [
       { label: "2nd place, Junior Soccer Open SuperTeam", tier: "silver" },
       { label: "Top Poster and Presentation Award", tier: "special" },
     ],
-    youtubeId: "YnFQOK-M96Y",
+    videos: [
+      { id: "YnFQOK-M96Y", title: "Match video" },
+    ],
     gallery: [
       { src: "/content/events/2024-eindhoven/lnx-robots.jpg", alt: "LNX Robots" },
       { src: "/content/events/2024-eindhoven/robots-with-a-trophy.jpg", alt: "Robots with a trophy" },
@@ -155,7 +168,9 @@ export const achievements: Achievement[] = [
     results: [{ label: "1st place, Soccer Open", tier: "gold" }],
     resultsUrl:
       "https://2024.robocupjunior.eu/wp-content/uploads/2024/06/Open-International-Standings-Day-4.pdf",
-    youtubeId: "ycy4akEXcko",
+    videos: [
+      { id: "ycy4akEXcko", title: "Match video" },
+    ],
     gallery: [
       { src: "/content/events/2024-europe/lnx-robots-robocupjunior-european-championship-2024-hanover.jpg", alt: "LNX Robots. RoboCupJunior European Championship 2024, Hanover" },
       { src: "/content/events/2024-europe/preparing-for-the-finals-robocupjunior-european-championship-2024-hanover.jpg", alt: "Preparing for the finals. RoboCupJunior European Championship 2024, Hanover" },
@@ -188,7 +203,9 @@ export const achievements: Achievement[] = [
       { label: "1st among Slovak teams", tier: "note" },
     ],
     resultsUrl: "https://robocup.skse.sk/results/3/",
-    youtubeId: "muNbSWIVRXY",
+    videos: [
+      { id: "muNbSWIVRXY", title: "Match video" },
+    ],
     gallery: [
       { src: "/content/events/2024-slovakia/resetlik-the-robot-robocup-junior-2024-slovakia-photo-spse-zochova.jpg", alt: "Resetlik the robot. RoboCup Junior 2024 Slovakia. Photo: SPŠE Zochova" },
       { src: "/content/events/2024-slovakia/robots-of-lnx-robots-and-xlc-younglings.jpg", alt: "Robots of LNX Robots and XLC Younglings" },
@@ -208,7 +225,9 @@ export const achievements: Achievement[] = [
       { label: "15th place, Junior Soccer Open (Game)", tier: "note" },
       { label: "1st place, Junior Soccer Open SuperTeam", tier: "gold" },
     ],
-    youtubeId: "3-lUAyqajDM",
+    videos: [
+      { id: "3-lUAyqajDM", title: "Match video" },
+    ],
     gallery: [
       { src: "/content/events/2023-bordeaux/working-on-robots.JPG", alt: "Working on robots" },
       { src: "/content/events/2023-bordeaux/calibrating-robots.JPG", alt: "Calibrating robots" },
@@ -237,7 +256,9 @@ export const achievements: Achievement[] = [
     team: "team-1",
     results: [{ label: "1st place, Soccer Open", tier: "gold" }],
     resultsUrl: "https://wiki.robotika.sk/robowiki/images/2/28/RCJ2023_Soccer_open_results.pdf",
-    youtubeId: "EfiDgmioZJE",
+    videos: [
+      { id: "EfiDgmioZJE", title: "Match video" },
+    ],
   },
 ];
 

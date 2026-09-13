@@ -6,6 +6,11 @@ export interface Result {
   tier: ResultTier;
 }
 
+export interface YoutubeVideo {
+  id: string;
+  title: string;
+}
+
 export interface Achievement {
   id: string;
   /** Competition name, e.g. "RoboCup World Championship" */
@@ -20,8 +25,8 @@ export interface Achievement {
   results: Result[];
   /** Optional external results/standings link */
   resultsUrl?: string;
-  /** Optional YouTube video id to embed */
-  youtubeId?: string;
+  /** Optional YouTube video ids to embed */
+  videos?: YoutubeVideo[];
   /** Optional photos from this specific event — shown on its dedicated event page */
   gallery?: GalleryImage[];
 }

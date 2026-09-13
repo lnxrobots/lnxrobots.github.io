@@ -31,13 +31,37 @@ export function Timeline({ items }: { items: Achievement[] }) {
               </svg>
             </span>
 
-            <Link
-              href={`/achievements/${a.id}`}
-              className="group -mx-3 flex items-center gap-4 border border-transparent px-3 py-3 pad-chamfer-sm transition-colors hover:border-copper/25 hover:bg-board-raised/60"
+            <div
+              className="-mx-3 flex items-center gap-4 border border-transparent px-3 py-3 pad-chamfer-sm transition-colors hover:border-copper/25 hover:bg-board-raised/60 relative"
             >
-              <div className="min-w-0 flex-1">
-                <p className="font-mono text-xs text-paper-faint">{formatDate(a.date)}</p>
-                <h3 className="mt-0.5 truncate font-display text-lg text-paper group-hover:text-signal-bright">
+              <div className="min-w-0 flex-1 font-mono text-xs [&_a:hover]:scale-100">
+                <div className="flex gap-4">
+                  <p className="text-paper-faint">{formatDate(a.date)}</p>
+                  {a.resultsUrl && (
+                    <a
+                      href={a.resultsUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-signal/80 hover:text-signal-bright z-10"
+                    >
+                      Standings →
+                    </a>
+                  )}
+                  {a.videos && a.videos.map((video) => {
+                    return (
+                      <a
+                        href={`https://www.youtube.com/watch?v=${video.id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-signal/80 hover:text-signal-bright z-10"
+                        key={video.id}
+                      >
+                        {video.title} →
+                      </a>
+                    )
+                  })}
+                </div>
+                <h3 className="mt-0.5 truncate font-display text-lg text-paper">
                   {a.event}
                 </h3>
                 <p className="truncate font-mono text-xs text-paper-muted">
@@ -55,10 +79,15 @@ export function Timeline({ items }: { items: Achievement[] }) {
                 </div>
               </div>
 
-              <span className="hidden shrink-0 font-mono text-xs text-signal/70 group-hover:text-signal-bright sm:block">
-                View event →
-              </span>
-            </Link>
+              <Link
+                className="shrink-0 font-mono text-xs text-signal/70 hover:text-signal-bright sm:block absolute inset-0"
+                href={`/achievements/${a.id}`}
+              >
+                <div className="w-full h-full flex items-center justify-end">
+                  View event →
+                </div>
+              </Link>
+            </div>
           </li>
         );
       })}

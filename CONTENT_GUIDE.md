@@ -115,7 +115,9 @@ Open `src/data/achievements.ts` and add one object to the **top** of the
     { label: "1st place, Junior Soccer Open", tier: "gold" },
   ],
   resultsUrl: "https://example.com/standings", // optional
-  youtubeId: "dQw4w9WgXcQ",                     // optional, just the video id
+  videos: [                                // optional
+    { id: "dQw4w9WgXcQ", title: "Match video" },
+  ],
 },
 ```
 

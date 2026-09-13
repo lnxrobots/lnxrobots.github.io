@@ -1,3 +1,4 @@
+import AchievementVideos from "@/components/achievements/AchievementVideos";
 import { EventGallery } from "@/components/achievements/EventGallery";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { achievements } from "@/data/achievements";
@@ -18,7 +19,7 @@ export default function GalleryPage() {
         <ol className="relative">
           <div className="absolute bottom-2 left-[7px] top-2 w-px bg-copper/25" aria-hidden="true" />
           {achievements.map((a) => {
-            if (!a.gallery || a.gallery.length === 0) {
+            if (!a.gallery && !a.videos) {
               return null;
             }
 
@@ -36,27 +37,58 @@ export default function GalleryPage() {
                   </svg>
                 </span>
 
-                <Link
-                  href={`/achievements/${a.id}`}
-                  className="group -mx-3 flex items-center gap-4 border border-transparent px-3 py-3 pad-chamfer-sm transition-colors hover:border-copper/25 hover:bg-board-raised/60"
+                <div
+                  className="-mx-3 flex items-center gap-4 border border-transparent px-3 py-3 pad-chamfer-sm transition-colors hover:border-copper/25 hover:bg-board-raised/60 relative"
                 >
                   <div className="min-w-0 flex-1">
-                    <div className="flex gap-4">
-                      <p className="font-mono text-xs text-paper-faint">{formatDate(a.date)}</p>
-                      <p className="truncate font-mono text-xs text-paper-muted">
+                    <div className="flex gap-4 text-xs font-mono">
+                      <p className="text-paper-faint">{formatDate(a.date)}</p>
+                      <p className="truncate text-paper-muted">
                         {a.location}
                         {teamText && ` · ${teamText}`}
                       </p>
+                      {a.resultsUrl && (
+                        <a
+                          href={a.resultsUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-signal/80 hover:text-signal-bright z-10"
+                        >
+                          Standings →
+                        </a>
+                      )}
+                      {/* {a.videos && a.videos.map((video) => { */}
+                      {/*   return ( */}
+                      {/*     <a */}
+                      {/*       href={`https://www.youtube.com/watch?v=${video.id}`} */}
+                      {/*       target="_blank" */}
+                      {/*       rel="noreferrer" */}
+                      {/*       className="text-signal/80 hover:text-signal-bright z-10" */}
+                      {/*       key={video.id} */}
+                      {/*     > */}
+                      {/*       {video.title} → */}
+                      {/*     </a> */}
+                      {/*   ) */}
+                      {/* })} */}
                     </div>
                     <h3 className="mt-0.5 truncate font-display text-lg text-paper group-hover:text-signal-bright">
                       {a.event}
                     </h3>
                   </div>
 
-                  <span className="hidden shrink-0 font-mono text-xs text-signal/70 group-hover:text-signal-bright sm:block">
-                    View event →
-                  </span>
-                </Link>
+                  <Link
+                    className="shrink-0 font-mono text-xs text-signal/70 hover:text-signal-bright sm:block absolute inset-0"
+                    href={`/achievements/${a.id}`}
+                  >
+                    <div className="w-full h-full flex items-center justify-end">
+                      View event →
+                    </div>
+                  </Link>
+                </div>
+
+                {a.videos && (
+                  <AchievementVideos achievement={a} />
+                )}
 
                 {a.gallery && (
                   <div className="mt-2">
