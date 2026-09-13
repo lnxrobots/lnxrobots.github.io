@@ -9,7 +9,9 @@ import { formatDate } from "@/lib/utils";
 export function LatestResult() {
   const latest = achievements[0];
   if (!latest) return null;
-  const team = getTeam(latest.team);
+  const teams = (Array.isArray(latest.team) ? latest.team : [latest.team]).map((slug) => {
+    return getTeam(slug);
+  });
 
   return (
     <section className="border-y border-copper/15 bg-board-raised/50">
@@ -24,7 +26,24 @@ export function LatestResult() {
             </h2>
             <p className="mt-1 font-mono text-sm text-paper-muted">
               {latest.location} · {formatDate(latest.date)}
-              {team && ` · fielded by ${team.name}`}
+              {teams && (
+                <span className="text-paper-muted">
+                  {" · "}Team{teams.length > 1 && "s"}:{" "}
+                  {teams.map((team, i) => {
+                    return team && (
+                      <span key={i}>
+                        {i !== 0 && ", "}
+                        <Link
+                          href={`/teams/${team.slug}`}
+                          className="text-copper/80 hover:text-copper-bright"
+                        >
+                          {team?.name}
+                        </Link>
+                      </span>
+                    )
+                  })}
+                </span>
+              )}
             </p>
             <div className="mt-4 flex flex-wrap items-center gap-2">
               <DisciplineTag slug={latest.discipline} />
