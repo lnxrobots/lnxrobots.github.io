@@ -80,23 +80,18 @@ export const teams: Team[] = [
     name: "Team 1",
     since: "2023",
     active: false,
-    tagline: "LNX Robots' founding team, competing every season since 2023.",
+    tagline: "LNX Robots' founding team, competing every season from 2023 to 2026",
     summary:
-      "The team behind every LNX Robots entry so far: three seasons of RoboCupJunior Soccer Open, three rebuilt robots, and a run of results from a first Slovak-nationals win in 2023 to a runner-up finish and Exemplary Team Award at Worlds 2025.",
-    // TODO: add the roster and mentor(s) here.
-    // Example:
-    // members: [
-    //   { name: "Full Name", role: "Software" },
-    //   { name: "Full Name", role: "Hardware & electronics", photo: "/content/team-1/members/name.jpg" },
-    // ],
-    // mentors: [{ name: "Full Name", role: "Mentor" }],
+      "LNX Robots' first team: three seasons of RoboCupJunior Soccer Open, three rebuilt robots, and a run of results from a first Slovak-nationals win in 2023 to a runner-up finish and Exemplary Team Award at Worlds 2025.",
     members: [
-      { name: "Full Name", role: "Role is here", photo: "/content/sponsors/slovnaft.svg" },
-      { name: "Full Name2", role: "Role is here" },
-      { name: "Full Name3", role: "Role is here" },
-      { name: "Full Name4", role: "Role is here" },
+      { name: "Tomáš Kováč", role: "electronics, mechanics", bio: "2023 - 2025" },
+      { name: "Matúš Mišiak", role: "mechanics, high level software", bio: "2023 - 2026" },
+      { name: "Mathias Suroviak", role: "software", bio: "2023 - 2024" },
+      { name: "Radko Bábíček", role: "design", bio: "2025" },
+      { name: "Michal Imrišek", role: "high level software", bio: "2025" },
+      { name: "Matej Repa", role: "movement", bio: "2023" },
     ],
-    mentors: [{ name: "Mentor", role: "Mentor (duh)" }],
+    mentors: [{ name: "Radoslav Kováč", role: "Mentor" }],
     campaigns: [
       {
         id: "team-1-soccer-open-2025-2026",
@@ -109,7 +104,7 @@ export const teams: Team[] = [
         specs: [
           { label: "Season", value: "2025 – 2026" },
           { label: "Software", value: "Multiprocess vision & control pipeline" },
-          { label: "Full hardware breakdown", value: "See hardware repository" },
+          { label: "Full hardware breakdown", value: "See hardware repository and documentation" },
         ],
         codeRepo: "https://github.com/lnxrobots/rcj-soccer-open-gen3",
         hardwareRepo: "https://github.com/lnxrobots/hw-rcj-soccer-open/tree/main/gen3",
@@ -146,10 +141,9 @@ export const teams: Team[] = [
         specs: [
           { label: "Season", value: "2024" },
           { label: "Notable result", value: "1st, European Championship 2024" },
-          { label: "Full hardware breakdown", value: "See hardware repository" },
+          { label: "Full hardware breakdown", value: "See hardware repository and documentation" },
         ],
         codeRepo: "https://github.com/lnxrobots/rcj-soccer-open-gen2",
-        hardwareRepo: "https://github.com/lnxrobots/hw-rcj-soccer-open",
         docs: [
           {
             title: "Poster — RoboCup 2024, Eindhoven (v2)",
@@ -187,6 +181,7 @@ export const teams: Team[] = [
         summary:
           "LNX Robots' first international entry: a Raspberry Pi 4 for vision and logic, a Teensy 4.1 handling line sensors and motors, and a fully multiprocess software stack squeezed onto modest hardware. It went straight to the World Championship in Bordeaux, taking 1st place in the Junior Soccer Open SuperTeam event on debut.",
         specs: [
+          { label: "Season", value: "2023" },
           { label: "Main processing unit", value: "Raspberry Pi 4" },
           { label: "Secondary MCU", value: "Teensy 4.1 (line sensors, motors)" },
           { label: "Camera", value: "Arducam B0310, 120° FOV, 12MP, forward-facing" },
@@ -231,11 +226,11 @@ export const teams: Team[] = [
     tagline: "LNX Robots' next team, competing since 2026.",
     summary: "A paragraph about who this team is and what they build.",
     members: [
-      { name: "Anton Abraham", role: "Software" },
-      { name: "Vladimír Lukáč", role: "Hardware" },
+      { name: "Anton Abraham", role: "Software", bio: "2026 - present" },
+      { name: "Vladimír Lukáč", role: "Hardware", bio: "2026 - present" },
     ],
     mentors: [
-      { name: "Full Name", role: "Mentor" },
+      { name: "Radoslav Kováč", role: "Mentor" },
     ],
     campaigns: [
       {

@@ -58,7 +58,7 @@ export interface Person {
   role: string;
   /** Optional headshot. Path relative to /public, e.g. /content/team-1/members/jana.jpg */
   photo?: string;
-  /** Optional one-line bio or fun fact */
+  /** Optional one-line bio, years participated, fun fact or other info */
   bio?: string;
 }
 

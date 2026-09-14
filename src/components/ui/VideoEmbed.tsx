@@ -43,7 +43,7 @@ export default function VideoEmbed({ video }: { video: YoutubeVideo }) {
           <SmartImage
             primaryUrl={thumbnailUrlBase + "maxresdefault.jpg"}
             fallbackUrl={thumbnailUrlBase + "hqdefault.jpg"}
-            alt=''
+            alt='Video thumbnail'
             className="opacity-100 group-hover:opacity-50 transition-all object-cover"
           />
           <span className="mt-1 text-white font-medium px-4 text-center text-sm drop-shadow bg-board/90 rounded">
