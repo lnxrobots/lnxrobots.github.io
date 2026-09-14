@@ -111,19 +111,19 @@ export const teams: Team[] = [
         docs: [
           {
             title: "Poster — RoboCup 2025, Salvador (v2)",
-            href: "https://lnxrobots.github.io/docs/2025/LNX_Robots_Poster_gen3_v2.pdf",
+            href: "/content/team-1/docs/2025/LNX_Robots_Poster_gen3_v2.pdf",
             kind: "poster",
             year: 2025,
           },
           {
             title: "TDP form and supporting files",
-            href: "https://lnxrobots.github.io/docs/2025/LNX_Robots_TDP_gen3_v2.zip",
+            href: "/content/team-1/docs/2025/LNX_Robots_TDP_gen3_v2.zip",
             kind: "archive",
             year: 2025,
           },
           {
             title: "Poster — RoboCupJunior European Championship, Bari",
-            href: "https://lnxrobots.github.io/docs/2025/LNX_Robots_Poster_gen3.pdf",
+            href: "/content/team-1/docs/2025/LNX_Robots_Poster_gen3.pdf",
             kind: "poster",
             year: 2025,
           },
@@ -147,19 +147,19 @@ export const teams: Team[] = [
         docs: [
           {
             title: "Poster — RoboCup 2024, Eindhoven (v2)",
-            href: "https://lnxrobots.github.io/docs/2024/LNX_Robots_Poster_gen2_v2.pdf",
+            href: "/content/team-1/docs/2024/LNX_Robots_Poster_gen2_v2.pdf",
             kind: "poster",
             year: 2024,
           },
           {
             title: "Design Document 2024",
-            href: "https://lnxrobots.github.io/docs/2024/LNX_Robots_Design_Document_2024.pdf",
+            href: "/content/team-1/docs/2024/LNX_Robots_Design_Document_2024.pdf",
             kind: "design-doc",
             year: 2024,
           },
           {
             title: "Poster — RoboCupJunior, Hanover",
-            href: "https://lnxrobots.github.io/docs/2024/LNX_Robots_Poster_gen2.pdf",
+            href: "/content/team-1/docs/2024/LNX_Robots_Poster_gen2.pdf",
             kind: "poster",
             year: 2024,
           },
@@ -196,19 +196,19 @@ export const teams: Team[] = [
         docs: [
           {
             title: "Poster — RoboCup 2023, Bordeaux",
-            href: "https://lnxrobots.github.io/docs/2023/LNX_Robots_poster.pdf",
+            href: "/content/team-1/docs/2023/LNX_Robots_poster.pdf",
             kind: "poster",
             year: 2023,
           },
           {
             title: "Team Description Paper 2023",
-            href: "https://lnxrobots.github.io/docs/2023/LNX_Robots_documentation.pdf",
+            href: "/content/team-1/docs/2023/LNX_Robots_documentation.pdf",
             kind: "tdp",
             year: 2023,
           },
           {
             title: "PCB schematic 2023",
-            href: "https://lnxrobots.github.io/docs/2023/LNX_Robots_pcb-schematic.pdf",
+            href: "/content/team-1/docs/2023/LNX_Robots_pcb-schematic.pdf",
             kind: "schematic",
             year: 2023,
           },
