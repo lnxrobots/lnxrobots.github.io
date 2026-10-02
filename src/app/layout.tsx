@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.longTagline,
+  verification: {
+    google: site.googleVerification,
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

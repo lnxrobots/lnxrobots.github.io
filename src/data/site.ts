@@ -6,6 +6,7 @@ export const site = {
     "We are a team of high schoolers in Bratislava. We spend our free time designing, programming, and breaking things until we have a robot ready for the international stage.",
   email: "lnxrobots@gmail.com",
   location: "GAMČA, Bratislava, Slovakia",
+  googleVerification: "0CUK9EypI35CKuF92Odpg86Vu0Z2Un39gJ5_RsRUKSc",
   social: {
     github: "https://github.com/lnxrobots",
     youtube: "https://www.youtube.com/@lnxrobots9860",
