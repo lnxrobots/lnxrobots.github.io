@@ -1,4 +1,6 @@
-export const site = {
+import type { Site } from "./types";
+
+export const site: Site = {
   name: "LNX Robots",
   designation: "LNX",
   shortTagline: "Slovak student robotics club",
@@ -20,4 +22,17 @@ export const site = {
     end: "2027-06-21T00:00:00+02:00",
     href: "https://robocup.de/en/",
   },
+  homeGallery: {
+    title: "Gallery",
+    text: "",
+    images: [
+      { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots" },
+      { src: "/content/events/2024-europe/istrobot-2024-slovakia-foto-c-robotika-sk.jpg", alt: "Istrobot 2024 Slovakia" },
+      { src: "/content/events/2024-slovakia/robots-of-lnx-robots-and-xlc-younglings.jpg", alt: "Robots of LNX Robots and XLC Younglings" },
+      { src: "/content/events/2024-europe/preparing-for-the-finals-robocupjunior-european-championship-2024-hanover.jpg", alt: "Preparing for the finals. RoboCupJunior European Championship 2024, Hanover" },
+      { src: "/content/events/2024-eindhoven/view-from-the-robot-s-360-degree-mirror.jpg", alt: "View from the robot's 360 degree mirror" },
+      { src: "/content/events/2024-eindhoven/preparing-robots-for-the-superteams-match.jpg", alt: "Preparing robots for the SuperTeams match" },
+    ],
+  },
+  cover: { src: "/content/cover.jpg", alt: "Robot made by LNX Robots" },
 };

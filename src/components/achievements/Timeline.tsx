@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Achievement } from "@/data/types";
 import { DisciplineTag } from "@/components/ui/DisciplineTag";
 import { formatDate } from "@/lib/utils";
 import { getTeam } from "@/data/teams";
+import { coverOf } from "@/lib/covers";
 import { ResultBadge } from "../event/ResultBadge";
 
 /**
@@ -21,6 +23,7 @@ export function Timeline({ items }: { items: Achievement[] }) {
         });
         const teamText = teamNames.join(", ");
         const [topResult, ...rest] = a.results;
+        const cover = coverOf(a);
 
         return (
           <li key={a.id} className="relative py-2 pl-10">
@@ -34,6 +37,11 @@ export function Timeline({ items }: { items: Achievement[] }) {
             <div
               className="-mx-3 flex items-center gap-4 border border-transparent px-3 py-3 pad-chamfer-sm transition-colors hover:border-copper/25 hover:bg-board-raised/60 relative"
             >
+              {cover && (
+                <div className="relative hidden h-16 w-24 shrink-0 overflow-hidden border border-copper/20 sm:block">
+                  <Image src={cover.src} alt={cover.alt} fill sizes="96px" className="object-cover" />
+                </div>
+              )}
               <div className="min-w-0 flex-1 font-mono text-xs [&_a:hover]:scale-100">
                 <div className="flex gap-4">
                   <p className="text-paper-faint">{formatDate(a.date)}</p>

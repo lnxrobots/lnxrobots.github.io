@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Team } from "@/data/types";
 import { teamDisciplines } from "@/data/teams";
@@ -12,6 +13,18 @@ export function TeamCard({ team }: { team: Team }) {
   return (
     <Link href={`/team/${team.slug}`} className="group block h-full">
       <Pad className="flex h-full flex-col p-6 transition-colors group-hover:border-copper/50">
+        {team.cover && (
+          <div className="relative -mx-6 -mt-6 mb-5 aspect-[16/9] overflow-hidden border-b border-copper/15">
+            <Image
+              src={team.cover.src}
+              alt={team.cover.alt}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-board-raised/60 via-transparent to-transparent" />
+          </div>
+        )}
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="font-mono text-xs text-copper/70">Since {team.since}</p>

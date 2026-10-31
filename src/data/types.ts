@@ -29,6 +29,8 @@ export interface Achievement {
   videos?: YoutubeVideo[];
   /** Optional photos from this specific event — shown on its dedicated event page */
   gallery?: GalleryImage[];
+  /** Optional cover picture (timeline, homepage, event page). If omitted, the first gallery photo is used. */
+  cover?: GalleryImage;
 }
 
 export interface Document {
@@ -97,6 +99,24 @@ export interface Team {
   mentors: Person[];
   /** One entry per competition (and, if relevant, per season within it) — see the Campaign type above. */
   campaigns: Campaign[];
+  /** Optional cover picture — shown on the team card and at the top of the team page */
+  cover?: GalleryImage;
+}
+
+export interface Site {
+  name: string;
+  designation: string;
+  shortTagline: string;
+  longTagline: string;
+  email: string;
+  location: string;
+  googleVerification: string;
+  social: { github: string; youtube: string; instagram: string };
+  nextEvent: { name: string; location: string; start: string; end: string; href: string };
+  /** Picture beside the homepage headline (desktop). Path relative to /public. */
+  cover?: GalleryImage;
+  /** Optional photo section on the homepage */
+  homeGallery?: { title: string; text: string; images: GalleryImage[] };
 }
 
 export interface Sponsor {

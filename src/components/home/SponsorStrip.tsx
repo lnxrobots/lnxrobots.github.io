@@ -4,7 +4,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 
 export function SponsorStrip() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+    <section className="mx-auto max-w-6xl px-5 sm:px-8 mb-10">
       <SectionLabel>who keeps the boards powered</SectionLabel>
       <p className="max-w-lg font-body text-sm text-paper-muted">
         LNX Robots runs on parts, travel budgets, and resources provided by the organisations below.

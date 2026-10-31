@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { achievements } from "@/data/achievements";
+import { coverOf } from "@/lib/covers";
 import { getTeam } from "@/data/teams";
 import { ResultBadge } from "@/components/event/ResultBadge";
 import { DisciplineTag } from "@/components/ui/DisciplineTag";
@@ -9,16 +11,31 @@ import { formatDate } from "@/lib/utils";
 export function LatestResult() {
   const latest = achievements[0];
   if (!latest) return null;
+  const cover = coverOf(latest);
   const teams = (Array.isArray(latest.team) ? latest.team : [latest.team]).map((slug) => {
     return getTeam(slug);
   });
 
   return (
-    <section className="border-y border-copper/15 bg-board-raised/50">
+    <section className="border-y border-copper/15 bg-board-raised/50 mb-10">
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
         <SectionLabel>most recent result</SectionLabel>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
+          {cover && (
+            <Link
+              href={`/event/${latest.id}`}
+              className="relative block aspect-[16/10] w-full shrink-0 overflow-hidden border border-copper/20 sm:w-64"
+            >
+              <Image
+                src={cover.src}
+                alt={cover.alt}
+                fill
+                sizes="(min-width: 640px) 256px, 100vw"
+                className="object-cover transition-transform duration-500 hover:scale-[1.03]"
+              />
+            </Link>
+          )}
+          <div className="sm:flex-1">
             <h2 className="font-display text-2xl text-paper sm:text-3xl">
               <Link href={`/event/${latest.id}`} className="hover:text-signal-bright">
                 {latest.event}

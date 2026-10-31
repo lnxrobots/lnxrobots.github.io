@@ -1,12 +1,10 @@
 import { sortedTeams } from "@/data/teams";
 import { TeamCard } from "@/components/teams/TeamCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { TraceDivider } from "@/components/pcb/TraceDivider";
 
 export function TeamsPreview() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-      <TraceDivider className="mb-10" />
+    <section className="mx-auto max-w-6xl px-5 sm:px-8">
       <SectionLabel>the teams</SectionLabel>
       <h2 className="max-w-lg text-balance font-display text-3xl text-paper">
         People come and go

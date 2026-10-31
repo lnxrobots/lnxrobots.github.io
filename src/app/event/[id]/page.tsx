@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { achievements, getAchievement } from "@/data/achievements";
+import { coverOf } from "@/lib/covers";
 import { getTeam } from "@/data/teams";
 import { getDiscipline } from "@/data/disciplines";
 import { ResultBadge } from "@/components/event/ResultBadge";
@@ -34,6 +36,7 @@ export default async function AchievementDetailPage({ params }: { params: Promis
     return getDiscipline(slug)?.shortName ?? slug;
   })
   const disciplineText = disciplines.join(", ")
+  const cover = coverOf(achievement);
 
   return (
     <>
@@ -44,6 +47,11 @@ export default async function AchievementDetailPage({ params }: { params: Promis
       />
 
       <div className="mx-auto max-w-4xl px-5 py-14 sm:px-8">
+        {cover && (
+          <div className="relative mb-8 aspect-[16/8] overflow-hidden border border-copper/20">
+            <Image src={cover.src} alt={cover.alt} fill sizes="(min-width: 896px) 896px, 100vw" className="object-cover" priority />
+          </div>
+        )}
         <div className="flex flex-wrap items-center gap-2">
           <DisciplineTag slug={achievement.discipline} />
           {achievement.results.map((r, i) => (

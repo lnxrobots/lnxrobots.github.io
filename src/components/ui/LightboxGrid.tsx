@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { GalleryImage } from "@/data/types";
+import { createPortal } from "react-dom";
 
 /**
  * A grid of photo thumbnails that expand into a full-screen lightbox on
@@ -12,6 +13,11 @@ import { GalleryImage } from "@/data/types";
  */
 export function LightboxGrid({ images }: { images: GalleryImage[] }) {
   const [index, setIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const close = useCallback(() => setIndex(null), []);
   const showPrev = useCallback(
@@ -56,7 +62,7 @@ export function LightboxGrid({ images }: { images: GalleryImage[] }) {
         ))}
       </div>
 
-      {active && (
+      {mounted && active && createPortal(
         <div
           className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-black/90 p-4 sm:p-8"
           role="dialog"
@@ -121,7 +127,8 @@ export function LightboxGrid({ images }: { images: GalleryImage[] }) {
               </span>
             )}
           </p>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

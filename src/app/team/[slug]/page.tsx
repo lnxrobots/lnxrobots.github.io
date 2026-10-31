@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { teams, getTeam, sortedCampaigns } from "@/data/teams";
@@ -59,6 +60,14 @@ export default async function TeamDetailPage({
         title={team.name}
         description={team.summary}
       />
+
+      {team.cover && (
+        <div className="mx-auto max-w-6xl px-5 pt-10 sm:px-8">
+          <div className="relative aspect-[16/7] overflow-hidden border border-copper/20">
+            <Image src={team.cover.src} alt={team.cover.alt} fill sizes="(min-width: 1152px) 1152px, 100vw" className="object-cover" priority />
+          </div>
+        </div>
+      )}
 
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
         <SectionLabel>people</SectionLabel>

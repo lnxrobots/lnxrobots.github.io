@@ -1,0 +1,25 @@
+{
+  "name": "lnx-robots-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local content editor for the LNX Robots website. Edits src/data and public/content; never touches git.",
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1 -p 4000",
+    "build": "next build",
+    "start": "next start -H 127.0.0.1 -p 4000",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test test/tsdata.test.ts test/inspect.test.ts test/descriptions.test.ts"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.5.3"
+  }
+}

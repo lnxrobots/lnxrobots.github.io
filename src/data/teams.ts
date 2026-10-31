@@ -128,7 +128,16 @@ export const teams: Team[] = [
             year: 2025,
           },
         ],
-        gallery: [],
+        gallery: [
+          { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots" },
+          { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots-1.jpg", alt: "All 3 generations of our robots" },
+          {
+            src:
+              "/content/events/2025-slovakia/jifyx-the-robot-vs-zg24robotics-robocup-junior-2025-slovakia-photo-spse-zochova.jpg",
+            alt:
+              "Jifyx the robot vs ZG24Robotics. RoboCup Junior 2025 Slovakia. Photo: SPŠE Zochova",
+          },
+        ],
       },
       {
         id: "team-1-soccer-open-2024",
@@ -170,7 +179,9 @@ export const teams: Team[] = [
             year: 2024,
           },
         ],
-        gallery: [],
+        gallery: [
+          { src: "/content/events/2024-eindhoven/robots-with-a-trophy.jpg", alt: "Robots with a trophy" },
+        ],
       },
       {
         id: "team-1-soccer-open-2023",
@@ -213,9 +224,14 @@ export const teams: Team[] = [
             year: 2023,
           },
         ],
-        gallery: [],
+        gallery: [
+          { src: "/content/events/2024-europe/istrobot-2024-slovakia-foto-c-robotika-sk-2.jpg", alt: "Istrobot 2024 Slovakia" },
+          { src: "/content/events/2024-slovakia/resetlik-the-robot-robocup-junior-2024-slovakia-photo-spse-zochova.jpg", alt: "Resetlik the robot. RoboCup Junior 2024 Slovakia. Photo: SPŠE Zochova" },
+          { src: "/content/events/2023-bordeaux/robots-at-the-ocean.jpg", alt: "Robots at the ocean" },
+        ],
       },
     ],
+    cover: { src: "/content/events/2024-eindhoven/lnx-robots.jpg", alt: "LNX Robots" },
   },
   {
     slug: "team-2",

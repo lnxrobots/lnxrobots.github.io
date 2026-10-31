@@ -44,11 +44,13 @@ export function Hero() {
           <CountdownReadout />
         </div>
 
-        <div className="max-w-md w-full aspect-square absolute hidden lg:block pad-chamfer group border border-signal/15 bg-board-raised/90 right-5 top-8">
-          <Image src="/content/cover.jpg" alt="Nyvora the robot" fill />
-          <div className="w-full h-full absolute bg-gradient-to-b from-board/10 via-board/50 to-board">
+        {site.cover && (
+          <div className="max-w-md w-full aspect-square absolute hidden lg:block pad-chamfer group border border-signal/15 bg-board-raised/90 right-5 top-8">
+            <Image src={site.cover.src} alt={site.cover.alt} fill className="object-cover" />
+            <div className="w-full h-full absolute bg-gradient-to-b from-board/10 via-board/50 to-board">
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
