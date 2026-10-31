@@ -77,7 +77,7 @@ export const teams: Team[] = [
   {
     slug: "team-1",
     designation: "Team 1",
-    name: "Team 1",
+    name: "Team 2023 Soccer",
     since: "2023",
     active: false,
     tagline: "LNX Robots' founding team, competing every season from 2023 to 2026",
@@ -236,11 +236,11 @@ export const teams: Team[] = [
   {
     slug: "team-2",
     designation: "Team 2",
-    name: "Team 2",
+    name: "Team 2026 Soccer",
     since: "2026",
     active: true,
     tagline: "LNX Robots' next team, competing since 2026.",
-    summary: "A paragraph about who this team is and what they build.",
+    summary: "LNX Robots' next team, competing since 2026. So far, we've won the first place at the RoboCup Junior 2026 European Championchip.",
     members: [
       { name: "Anton Abraham", role: "Software", bio: "2026 - present" },
       { name: "Vladimír Lukáč", role: "Hardware", bio: "2026 - present" },
@@ -281,9 +281,14 @@ export const teams: Team[] = [
         docs: [
           { title: "Poster — RoboCup 2026, Vienna", href: "/content/team-2/docs/LNX_Robots_poster.pdf", kind: "poster", year: 2026 },
         ],
-        gallery: [],
+        gallery: [
+          { src: "/content/events/2026-vienna/IMG_0540.jpg", alt: "Calibrating the robot using our LNX visualizer tool" },
+          { src: "/content/events/2026-vienna/P1048743.jpg", alt: "Picture of our robot after a match" },
+          { src: "/content/events/2026-vienna/IMG_0643.jpg", alt: "Photo with robots and first place medals" },
+        ],
       },
     ],
+    cover: { src: "/content/events/2026-vienna/IMG_0648.jpg", alt: "Team photo at 2026 european championchip" },
   },
 ];
 

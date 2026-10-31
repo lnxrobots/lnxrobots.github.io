@@ -4,7 +4,7 @@
  * showing that image uses it. Gallery items still carry their own `alt`, kept in sync.
  */
 export const mediaDescriptions: Record<string, string> = {
-  "/content/cover.jpg": "Robot made by LNX Robots",
+  "/content/cover.jpg": "Robot made by LNX Robots Team 1",
   "/content/events/2023-bordeaux/awards-ceremony.jpg": "Awards ceremony",
   "/content/events/2023-bordeaux/calibrating-robots.JPG": "Calibrating robots",
   "/content/events/2023-bordeaux/lnx-robots-and-i-bots-2.JPG": "LNX Robots and i-bots 2",
@@ -70,4 +70,16 @@ export const mediaDescriptions: Record<string, string> = {
     "Istrobot 2024 Slovakia",
   "/content/events/2024-europe/istrobot-2024-slovakia-foto-c-robotika-sk-2.jpg":
     "Istrobot 2024 Slovakia",
+  "/content/events/2026-vienna/IMG_0540.jpg": "Calibrating the robot using our LNX visualizer tool",
+  "/content/events/2026-vienna/IMG_0542.jpg": "Starting a match",
+  "/content/events/2026-vienna/IMG_0558.jpg":
+    "Improvized location for our poster at the 2026 european robocup",
+  "/content/events/2026-vienna/IMG_0582.jpg": "Calibrating the robot using our LNX visualizer tool",
+  "/content/events/2026-vienna/IMG_0612.jpg":
+    "Fixing broken robot during the half-time break of the finals",
+  "/content/events/2026-vienna/IMG_0626.jpg": "Awards ceremony",
+  "/content/events/2026-vienna/IMG_0648.jpg": "Team photo at 2026 european championchip",
+  "/content/events/2026-vienna/P1048743-1.jpg": "Picture of the robot after a match",
+  "/content/events/2026-vienna/P1048743.jpg": "Picture of our robot after a match",
+  "/content/events/2026-vienna/IMG_0643.jpg": "Photo with robots and first place medals",
 };

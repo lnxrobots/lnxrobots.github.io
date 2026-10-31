@@ -56,6 +56,17 @@ export const achievements: Achievement[] = [
     resultsUrl: "https://catigoal.com/RCJE26/matches?league=2v2IR&league_stage=2",
     videos: [
       { id: "seq0j9T9f8k?t=2999", title: "Finals video" },
+    ],
+    gallery: [
+      { src: "/content/events/2026-vienna/IMG_0648.jpg", alt: "Team photo at 2026 european championchip" },
+      { src: "/content/events/2026-vienna/IMG_0643.jpg", alt: "Photo with robots and first place medals" },
+      { src: "/content/events/2026-vienna/IMG_0626.jpg", alt: "Awards ceremony" },
+      { src: "/content/events/2026-vienna/IMG_0612.jpg", alt: "Fixing broken robot during the half-time break of the finals" },
+      { src: "/content/events/2026-vienna/IMG_0582.jpg", alt: "Calibrating the robot using our LNX visualizer tool" },
+      { src: "/content/events/2026-vienna/IMG_0558.jpg", alt: "Improvized location for our poster at the 2026 european robocup" },
+      { src: "/content/events/2026-vienna/IMG_0542.jpg", alt: "Starting a match" },
+      { src: "/content/events/2026-vienna/IMG_0540.jpg", alt: "Calibrating the robot using our LNX visualizer tool" },
+      { src: "/content/events/2026-vienna/P1048743.jpg", alt: "Picture of our robot after a match" },
     ]
   },
   {
@@ -90,7 +101,7 @@ export const achievements: Achievement[] = [
   },
   {
     id: "2025-bari",
-    event: "RoboCupJunior European Championship",
+    event: "RoboCup Junior European Championship",
     location: "Bari, Italy",
     date: "2025-05-01",
     discipline: "rcj-soccer-open",
@@ -160,7 +171,7 @@ export const achievements: Achievement[] = [
   },
   {
     id: "2024-europe",
-    event: "RoboCupJunior European Championship",
+    event: "RoboCup Junior European Championship",
     location: "Europe",
     date: "2024-06-01",
     discipline: "rcj-soccer-open",

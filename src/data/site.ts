@@ -34,5 +34,5 @@ export const site: Site = {
       { src: "/content/events/2024-eindhoven/preparing-robots-for-the-superteams-match.jpg", alt: "Preparing robots for the SuperTeams match" },
     ],
   },
-  cover: { src: "/content/cover.jpg", alt: "Robot made by LNX Robots" },
+  cover: { src: "/content/cover.jpg", alt: "Robot made by LNX Robots Team 1" },
 };
