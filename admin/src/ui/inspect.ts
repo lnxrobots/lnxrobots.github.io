@@ -50,6 +50,8 @@ const KEY_LABEL: Record<string, string> = {
   name: "Name", role: "Role", bio: "Note", tagline: "Tagline", summary: "Summary", event: "Competition name", location: "Location",
   label: "Text", value: "Value", title: "Title", alt: "Photo description", note: "Note", photo: "Photo", logo: "Logo", src: "Photo",
   shortName: "Short name", org: "Organisation", designation: "Badge text", shortTagline: "Short tagline", longTagline: "Long tagline",
+  heroTitle: "Headline", latestLabel: "Latest result label", teamsLabel: "Teams section label", teamsTitle: "Teams section heading",
+  teamsText: "Teams section paragraph", galleryLabel: "Photos label", sponsorsLabel: "Sponsors label", sponsorsText: "Sponsors paragraph",
   years: "Years", fundingNote: "Funding note", url: "Website", href: "Link", email: "Email", id: "Video", text: "Text",
 };
 
@@ -61,7 +63,7 @@ const titleOf = (o: Obj): string => {
 /** Names for nested objects/lists that have no title of their own. */
 const NESTED_LABEL: Record<string, string> = {
   cover: "Cover image", homeGallery: "Home page photos", gallery: "Photos", images: "Photos", social: "Social links",
-  nextEvent: "Next event", videos: "Videos", results: "Results", specs: "Specs", docs: "Documents",
+  home: "Homepage", nextEvent: "Next event", videos: "Videos", results: "Results", specs: "Specs", docs: "Documents",
 };
 
 /** Replace {{team:slug}} with the team's name, the way the site renders it. */
@@ -113,6 +115,7 @@ export function buildIndex(data: Obj): Entry[] {
     walk(a, start(`#/results/${a._k}`, []));
     out.push({ kind: "record", value: `/event/${a.id}`, norm: `/event/${a.id}`, obj: a, key: "", chain: [a], labels: [titleOf(a)], route: `#/results/${a._k}`, label: `Result “${titleOf(a)}”` });
   }
+  walk(data.copy, start("#/texts", ["Page texts"], true));
   walk(data.sponsors, start("#/sponsors", ["Sponsors"]));
   walk(data.disciplines, start("#/competitions", ["Competitions"]));
   if (typeof data.fundingNote === "string" && data.fundingNote.trim().length > 1) {
@@ -149,7 +152,8 @@ function choose(hits: Entry[], c: Cand, pageRoute: string | null): { entry: Entr
 
 /** What kind of thing a record is, for ranking and for its label. */
 const priority = (route: string): number => (route.startsWith("#/teams") || route.startsWith("#/results") ? 3 : route === "#/sponsors" ? 2 : 1);
-const kindWord = (route: string): string => (route.startsWith("#/teams") ? "Team" : route.startsWith("#/results") ? "Result" : route === "#/sponsors" ? "Sponsor" : route === "#/competitions" ? "Competition" : "Site");
+const kindWord = (route: string): string =>
+  route.startsWith("#/teams") ? "Team" : route.startsWith("#/results") ? "Result" : route === "#/sponsors" ? "Sponsor" : route === "#/competitions" ? "Competition" : route === "#/texts" ? "Page texts" : "Site settings";
 
 /**
  * A block (card, section) holding several known strings means "this record" — the smallest
@@ -176,7 +180,8 @@ function blockRecord(inside: Entry[], pageRoute: string | null): Entry | null {
   }
   if (k < 1) return null;
   const first = best[0];
-  const head = kindWord(first.route) === "Site" ? "Site" : `${kindWord(first.route)} “${first.labels[0] || ""}”`;
+  const kind = kindWord(first.route);
+  const head = kind === "Site settings" || kind === "Page texts" ? kind : `${kind} “${first.labels[0] || ""}”`;
   const label = [head, ...first.labels.slice(1, k).filter(Boolean)].join(" › ");
   return { ...first, kind: "record", value: "", norm: "", obj: first.chain[k - 1], key: "", chain: first.chain.slice(0, k), labels: first.labels.slice(0, k), label };
 }
@@ -212,6 +217,13 @@ export function resolve(index: Entry[], cands: Cand[], pageRoute: string | null)
       let inside = index.filter((e) => e.kind === "text" && e.norm.length >= 5 && ft.includes(fold(e.norm)));
       // ignore strings that are just a fragment of a longer matched string ("LNX Robots" inside a tagline)
       inside = inside.filter((e) => !inside.some((o) => o !== e && o.norm.length > e.norm.length && fold(o.norm).includes(fold(e.norm))));
+      // A paragraph that merely *mentions* a known word ("mentor") is not that record: the known strings must make up
+      // a real share of the block's text (a card is mostly its name + tagline; a sentence with one word in it is not).
+      const covered = [...new Set(inside.map((e) => e.norm))].reduce((n, x) => n + x.length, 0);
+      if (covered / t.length < 0.3) inside = [];
+      // Only ONE known text in the block (the rest is decoration such as "// " or "→"): it's that field, not a record.
+      const distinct = new Set(inside.map((e) => e.norm));
+      if (distinct.size === 1 && covered / t.length >= 0.5) return { ...choose(inside, c, pageRoute), candIndex: i, container: false };
       const rec = inside.length ? blockRecord(inside, pageRoute) : null;
       if (rec) return { entry: rec, alternatives: [], candIndex: i, container: true };
     }
@@ -221,10 +233,13 @@ export function resolve(index: Entry[], cands: Cand[], pageRoute: string | null)
 
 /* ───────── page ⇄ editor route ───────── */
 
+/** A path without trailing slash, query or hash, so "/team/x/" and "/team/x" compare equal. */
+export const normPath = (p: string): string => p.split(/[?#]/)[0].replace(/\/+$/, "") || "/";
+
 /** Editor route for a website path, e.g. /team/team-1 → #/teams/<key>. */
 export function routeForPath(data: Obj, path: string): string | null {
-  const seg = path.split("?")[0].split("/").filter(Boolean).map(decodeURIComponent);
-  if (!seg.length) return "#/site";
+  const seg = normPath(path).split("/").filter(Boolean).map(decodeURIComponent);
+  if (!seg.length) return null; // the home page spans several tabs (site, texts, teams…): keep whichever one is open
   if (seg[0] === "team" && seg[1]) {
     const t = (data.teams || []).find((x: Obj) => x.slug === seg[1]);
     return t ? `#/teams/${t._k}` : "#/teams";
@@ -241,6 +256,7 @@ export function routeForPath(data: Obj, path: string): string | null {
 /** Website path to show for an editor route (so the preview follows the panel). */
 export function pathForRoute(data: Obj, hash: string): string | null {
   const [name, key] = hash.replace(/^#\//, "").split("/");
+  if (name === "texts") return "/";
   if (name === "teams") {
     const t = key && (data.teams || []).find((x: Obj) => x._k === key);
     return t && t.slug ? `/team/${t.slug}` : "/teams";
@@ -250,8 +266,8 @@ export function pathForRoute(data: Obj, hash: string): string | null {
     return a && a.id ? `/event/${a.id}` : "/achievements";
   }
   if (name === "site") return "/";
-  if (name === "sponsors") return "/";
-  if (name === "competitions") return "/achievements";
+  if (name === "sponsors") return "/about"; // the sponsors are listed on the About page
+  // competitions have no page of their own: leave the preview where it is
   return null;
 }
 
@@ -267,4 +283,23 @@ export function listPages(data: Obj): { path: string; label: string }[] {
     { path: "/docs", label: "Documents" },
     { path: "/about", label: "About" },
   ];
+}
+
+/**
+ * The preview told us which page it is on. Should the editor switch tab to match?
+ * Only when the *person* browsed there. If the editor itself asked the preview to open that page
+ * (because a tab was opened), arriving there must never switch the editor back.
+ */
+export function onPathMessage(
+  data: Obj,
+  msg: { path: string; ready: boolean },
+  state: { pagePath: string; followNav: string | null; hash: string },
+): { followNav: string | null; switchTo: string | null } {
+  const moved = normPath(state.pagePath) !== normPath(msg.path);
+  const fromEditor = state.followNav !== null && state.followNav === normPath(msg.path);
+  const route = routeForPath(data, msg.path);
+  return {
+    followNav: fromEditor ? null : state.followNav,
+    switchTo: moved && !msg.ready && !fromEditor && route && state.hash !== route ? route : null,
+  };
 }

@@ -7,6 +7,7 @@ import { ResultBadge } from "@/components/event/ResultBadge";
 import { DisciplineTag } from "@/components/ui/DisciplineTag";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { formatDate } from "@/lib/utils";
+import { copy } from "@/data/copy";
 
 export function LatestResult() {
   const latest = achievements[0];
@@ -19,7 +20,7 @@ export function LatestResult() {
   return (
     <section className="border-y border-copper/15 bg-board-raised/50 mb-10">
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
-        <SectionLabel>most recent result</SectionLabel>
+        <SectionLabel>{copy.home.latestLabel}</SectionLabel>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           {cover && (
             <Link

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { dirtyDatasets, F, loadMedia, S, sortedAchievements, teamName, type Field } from "./schema";
-import { confirmDialog, edited, toast, uploadOne } from "./store";
+import { confirmDialog, edited, openLightbox, toast, uploadOne } from "./store";
 import { describeFromFilename } from "./descriptions";
 import { api, dirOf, extOf, fileName, fmtBytes, isImagePath, rid, thisYear, toArr, type Obj } from "./util";
 import { FieldView, Fields, focusRef } from "./widgets";
@@ -39,6 +39,7 @@ export function titleFor(name: string, key?: string): string {
     case "site": return "Site and next event";
     case "teams": return key ? S.data.teams.find((t: Obj) => t._k === key)?.name || "Team" : "Teams";
     case "results": return key ? S.data.achievements.find((a: Obj) => a._k === key)?.event || "Result" : "Results and events";
+    case "texts": return "Page texts";
     case "sponsors": return "Sponsors";
     case "competitions": return "Competitions";
     case "media": return "Media library";
@@ -98,6 +99,19 @@ export function SiteView() {
         <Fields fields={F.site.filter((f) => f.advanced)} obj={S.data.site} ctx={{}} />
         <p className="help">Leave this alone unless you are re-verifying the site with Google.</p>
       </details>
+    </div>
+  );
+}
+
+/* ───────── Page texts ───────── */
+
+export function TextsView() {
+  const home = def(F.copy, "home");
+  const group = (S.data.copy ||= { home: {} }).home ||= {};
+  return (
+    <div className="stack">
+      <Lede>Headlines, section labels and short paragraphs on the website’s pages. You can also click them on the page.</Lede>
+      <Panel title="Homepage"><Fields fields={home.fields!} obj={group} ctx={{}} /></Panel>
     </div>
   );
 }
@@ -304,6 +318,7 @@ export function MediaView() {
   const [term, setTerm] = useState("");
   const [folder, setFolder] = useState("");
   const [, refresh] = useState(0);
+  const [selected, setSelected] = useState<string[]>([]);
   const input = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
 
@@ -363,6 +378,34 @@ export function MediaView() {
     }
   }
 
+  const toggle = (path: string) => setSelected((s) => (s.includes(path) ? s.filter((x) => x !== path) : [...s, path]));
+  const imagesShown = shown.filter((m) => isImagePath(m.path));
+
+  async function removeSelected() {
+    const usedOnes = selected.filter((p) => usage.get(p));
+    const ok = await confirmDialog({
+      title: `Delete ${selected.length} file${selected.length > 1 ? "s" : ""}?`,
+      body: usedOnes.length
+        ? `${usedOnes.length} of them ${usedOnes.length > 1 ? "are" : "is"} still used on the site — those would show broken images or links until you change them. Copies are kept in admin/.backups/.`
+        : "None of them is used anywhere. Copies are kept in admin/.backups/ in case you change your mind.",
+      ok: "Delete files", danger: true,
+    });
+    if (!ok) return;
+    let n = 0;
+    for (const path of selected) {
+      try {
+        await api(`/api/media?path=${encodeURIComponent(path)}`, { method: "DELETE" });
+        S.media = S.media.filter((x) => x.path !== path);
+        n++;
+      } catch (e) {
+        toast(`${fileName(path)}: ${(e as Error).message}`, "error");
+      }
+    }
+    setSelected([]);
+    refresh((x) => x + 1);
+    if (n) toast(`Deleted ${n} file${n > 1 ? "s" : ""}.`, "success");
+  }
+
   return (
     <div className="stack">
       <Lede>Everything under public/content. Normally you’ll upload from a photo, logo or document field instead — this is for bulk uploads and tidying up.</Lede>
@@ -382,16 +425,29 @@ export function MediaView() {
         <p className="help">Each image’s description is stored here, once. Every gallery that shows the image uses it, so you never type the same description twice. New uploads start with a description made from the file name.</p>
         <div className="media-tools">
           <input type="search" value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Filter by file, folder or description…" aria-label="Filter files" />
+          <button className="btn sm ghost" onClick={() => setSelected(shown.map((m) => m.path))} disabled={!shown.length}>Select all shown</button>
           {undescribed.length > 0 && <button className="btn sm" onClick={fillFromNames}>Fill {undescribed.length} empty description{undescribed.length > 1 ? "s" : ""} from file names</button>}
         </div>
+        {selected.length > 0 && (
+          <div className="bulk-bar" role="status">
+            <strong>{selected.length}</strong> selected
+            <button className="btn sm danger" onClick={removeSelected}>Delete selected…</button>
+            <button className="btn sm ghost" onClick={() => setSelected([])}>Clear selection</button>
+          </div>
+        )}
         <div className="media-grid">
           {shown.length === 0 && <p className="empty">{S.media.length ? "No files match." : "No files uploaded yet. Upload some above, or from any photo, logo or document field."}</p>}
           {shown.map((m) => {
             const used = usage.get(m.path);
             return (
-              <figure className="media-item" key={m.path}>
-                {isImagePath(m.path) ? // eslint-disable-next-line @next/next/no-img-element
-                  <img src={m.path} loading="lazy" alt="" /> : <div className="docicon big">{extOf(m.path).toUpperCase()}</div>}
+              <figure className={`media-item${selected.includes(m.path) ? " selected" : ""}`} key={m.path}>
+                <label className="sel" title="Select"><input type="checkbox" checked={selected.includes(m.path)} onChange={() => toggle(m.path)} aria-label={`Select ${fileName(m.path)}`} /></label>
+                {isImagePath(m.path) ? (
+                  <button className="media-img" title="View larger" aria-label={`View ${fileName(m.path)} larger`} onClick={() => openLightbox(imagesShown.map((x) => ({ src: x.path })), imagesShown.findIndex((x) => x.path === m.path))}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={m.path} loading="lazy" alt="" />
+                  </button>
+                ) : <div className="docicon big">{extOf(m.path).toUpperCase()}</div>}
                 <figcaption>
                   <strong title={m.path}>{fileName(m.path)}</strong>
                   <span className="meta">{dirOf(m.path)} · {fmtBytes(m.size)}</span>

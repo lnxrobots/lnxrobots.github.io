@@ -50,7 +50,7 @@ export const mediaDescriptions: Record<string, string> = {
   "/content/events/2025-slovakia/all-3-generations-of-our-robots-1.jpg":
     "All 3 generations of our robots",
   "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg":
-    "All 3 generations of our robots",
+    "All 3 generations of our robots (Team 1)",
   "/content/events/2025-slovakia/assembling-the-new-robot.JPG": "Assembling the new robot",
   "/content/events/2025-slovakia/awards-ceremony.JPG": "Awards ceremony",
   "/content/events/2025-slovakia/demonstration-in-slovak-morning-show-telerano.jpg":

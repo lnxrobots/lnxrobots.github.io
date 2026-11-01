@@ -26,7 +26,7 @@ export const site: Site = {
     title: "Gallery",
     text: "",
     images: [
-      { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots" },
+      { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots (Team 1)" },
       { src: "/content/events/2024-europe/istrobot-2024-slovakia-foto-c-robotika-sk.jpg", alt: "Istrobot 2024 Slovakia" },
       { src: "/content/events/2024-slovakia/robots-of-lnx-robots-and-xlc-younglings.jpg", alt: "Robots of LNX Robots and XLC Younglings" },
       { src: "/content/events/2024-europe/preparing-for-the-finals-robocupjunior-european-championship-2024-hanover.jpg", alt: "Preparing for the finals. RoboCupJunior European Championship 2024, Hanover" },

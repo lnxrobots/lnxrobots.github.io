@@ -129,7 +129,7 @@ export const teams: Team[] = [
           },
         ],
         gallery: [
-          { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots" },
+          { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots (Team 1)" },
           { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots-1.jpg", alt: "All 3 generations of our robots" },
           {
             src:

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
 import { S, type Ctx, type Field } from "./schema";
-import { confirmDialog, edited, pickMedia, registerAuto, resolveDir, toast, ui, uploadOne } from "./store";
+import { confirmDialog, edited, openLightbox, pickMedia, pickMediaMany, registerAuto, resolveDir, toast, ui, uploadOne } from "./store";
 import { extOf, fileName, isUrl, parseYouTube, slugify, splitVideoId, toArr, videoLink, type Obj } from "./util";
 
 /* Form widgets. Each control edits the plain data object directly, then calls edited(). */
@@ -187,8 +187,12 @@ function AssetCtl({ f, obj, ctx, kind }: P & { kind: "image" | "file" }) {
 
   const thumb =
     kind === "image" ? (
-      !v ? <div className="thumb empty">none</div> : broken === v ? <div className="thumb missing" title="This file isn’t in public/ yet">missing</div> : // eslint-disable-next-line @next/next/no-img-element
-      <img className="thumb" src={v} alt="" onError={() => setBroken(v)} />
+      !v ? <div className="thumb empty">none</div> : broken === v ? <div className="thumb missing" title="This file isn’t in public/ yet">missing</div> : (
+        <button className="thumb-btn" title="View larger" aria-label="View larger" onClick={() => openLightbox([{ src: v }], 0)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="thumb" src={v} alt="" onError={() => setBroken(v)} />
+        </button>
+      )
     ) : (
       <div className={`thumb docicon${v ? "" : " empty"}`}>{v ? (isUrl(v) ? "LINK" : extOf(v).toUpperCase().slice(0, 4) || "FILE") : "none"}</div>
     );
@@ -267,8 +271,12 @@ function CoverCtl({ f, obj, ctx }: P) {
       onDrop={(e) => { e.preventDefault(); setDrag(false); if (e.dataTransfer.files.length) doUpload(e.dataTransfer.files[0]); }}
     >
       <div className="thumb-wrap">
-        {!src ? <div className="thumb wide empty">none</div> : broken === src ? <div className="thumb wide missing" title="This file isn’t in public/ yet">missing</div> : // eslint-disable-next-line @next/next/no-img-element
-          <img className="thumb wide" src={src} alt="" onError={() => setBroken(src)} />}
+        {!src ? <div className="thumb wide empty">none</div> : broken === src ? <div className="thumb wide missing" title="This file isn’t in public/ yet">missing</div> : (
+          <button className="thumb-btn" title="View larger" aria-label="View larger" onClick={() => openLightbox([{ src, alt: cur?.alt }], 0)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="thumb wide" src={src} alt="" onError={() => setBroken(src)} />
+          </button>
+        )}
       </div>
       <div className="asset-main">
         <div className="asset-actions">
@@ -352,7 +360,18 @@ function GalleryCtl({ f, obj, ctx }: P) {
       </div>
       <div className="gallery-add">
         <button className="btn" onClick={() => input.current?.click()}>Add photos…</button>
-        <button className="btn" onClick={async () => { const p = await pickMedia("image"); if (p) { arr.push({ src: p, alt: S.data.mediaDescriptions?.[p] ?? "", _focus: true }); edited(); } }}>Choose existing</button>
+        <button className="btn" onClick={async () => {
+          const picked = await pickMediaMany(arr.map((x) => x.src));
+          if (!picked?.length) return;
+          let first = true;
+          for (const p of picked) {
+            const alt = S.data.mediaDescriptions?.[p] ?? "";
+            arr.push({ src: p, alt, _focus: first && !alt }); // only jump to the description box if it still needs one
+            first = false;
+          }
+          edited();
+          toast(`Added ${picked.length} photo${picked.length > 1 ? "s" : ""}.`, "success", 2500);
+        }}>Choose existing…</button>
         <span className="hint">or drop image files here · descriptions are shared with the media library</span>
         {arr.length > 0 && <span className="count">{arr.length} photo{arr.length === 1 ? "" : "s"}</span>}
       </div>
@@ -366,8 +385,12 @@ function Tile({ img, i, arr }: { img: Obj; i: number; arr: Obj[] }) {
   const empty = !String(img.alt || "").trim();
   return (
     <figure className="tile" ref={(el) => { focusNew(img, ".alt")(el); focusRef(img, ["", "src", "alt"], ".alt")(el); }}>
-      {broken ? <div className="tile-missing" title={img.src}>missing file</div> : // eslint-disable-next-line @next/next/no-img-element
-        <img src={img.src} alt="" loading="lazy" onError={() => setBroken(true)} />}
+      {broken ? <div className="tile-missing" title={img.src}>missing file</div> : (
+        <button className="tile-img" title="View larger" aria-label={`View ${fileName(img.src)} larger`} onClick={() => openLightbox(arr.map((x) => ({ src: x.src, alt: x.alt })), i)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={img.src} alt="" loading="lazy" onError={() => setBroken(true)} />
+        </button>
+      )}
       <input className={`alt${empty ? " empty" : ""}`} value={img.alt || ""} placeholder="Describe the photo" aria-label={`Description of ${fileName(img.src)}`} onChange={(e) => { (S.data.mediaDescriptions ||= {})[img.src] = e.target.value; img.alt = e.target.value; edited(); }} title="Saved with the image in the media library: the same description is used everywhere this photo appears." />
       <div className="tile-ctl">
         <button className="icon" title="Move earlier" aria-label="Move earlier" disabled={i === 0} onClick={() => { [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]]; edited(); }}>↑</button>

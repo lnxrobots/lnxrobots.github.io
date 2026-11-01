@@ -1,15 +1,16 @@
 "use client";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { clearNewFlags, datasetValues, dirtyDatasets, loadAll, loadMedia, markSaved, NAV_DATASETS, S, snapshot, sortedAchievements, validate } from "./schema";
-import { bump, closeDialog, confirmDialog, ui, toast, useStore, type DialogSpec } from "./store";
-import { api, dirOf, extOf, fileName, isImagePath } from "./util";
-import { pathForRoute } from "./inspect";
+import { bump, closeDialog, confirmDialog, edited, openLightbox, ui, toast, useStore, type DialogSpec } from "./store";
+import { api, dirOf, extOf, fileName, fmtBytes, isImagePath } from "./util";
+import { normPath, pathForRoute } from "./inspect";
 import Preview, { navigatePreview, refreshPreview, selectEntry } from "./Preview";
-import { ChangesView, CompetitionsView, Home, MediaView, ResultsView, SiteView, SponsorsView, TeamsView, titleFor } from "./views";
+import { ChangesView, CompetitionsView, Home, MediaView, ResultsView, SiteView, SponsorsView, TeamsView, TextsView, titleFor } from "./views";
 
 const TABS: { name: string; label: string }[] = [
   { name: "home", label: "Start" },
   { name: "site", label: "Site" },
+  { name: "texts", label: "Texts" },
   { name: "teams", label: "Teams" },
   { name: "results", label: "Results" },
   { name: "sponsors", label: "Sponsors" },
@@ -53,7 +54,11 @@ export default function App() {
     ui.selection = null;
     if (ui.follow) {
       const p = pathForRoute(S.data, hash);
-      if (p && p !== ui.pagePath) navigatePreview(p);
+      if (p && normPath(p) !== normPath(ui.pagePath)) {
+        ui.followNav = normPath(p);
+        setTimeout(() => { if (ui.followNav === normPath(p)) ui.followNav = null; }, 4000);
+        navigatePreview(p);
+      }
     }
     bump();
   }, [hash, ready]);
@@ -135,6 +140,7 @@ export default function App() {
   let view: ReactNode;
   switch (name) {
     case "site": view = <SiteView />; break;
+    case "texts": view = <TextsView />; break;
     case "teams": view = <TeamsView k={key} />; break;
     case "results": view = <ResultsView k={key} />; break;
     case "sponsors": view = <SponsorsView />; break;
@@ -199,6 +205,7 @@ export default function App() {
 
       {problems && <ProblemsDialog onClose={() => setProblems(false)} />}
       {ui.dialogs.map((d) => <DialogView key={d.id} d={d} />)}
+      {ui.lightbox && <LightboxDialog />}
       <div id="toasts" aria-live="polite">
         {ui.toasts.map((t) => <div key={t.id} className={`toast ${t.kind}`} role={t.kind === "error" ? "alert" : "status"}>{t.message}</div>)}
       </div>
@@ -254,27 +261,140 @@ function ConfirmDialog({ d }: { d: Extract<DialogSpec, { kind: "confirm" }> }) {
 
 function PickerDialog({ d }: { d: Extract<DialogSpec, { kind: "picker" }> }) {
   const ref = useModal();
-  const chosen = useRef<string | null>(null);
+  const chosen = useRef<string[] | null>(null);
   const [term, setTerm] = useState("");
-  const files = S.media.filter((m) => d.mediaKind !== "image" || isImagePath(m.path));
+  const [folder, setFolder] = useState("");
+  const [newest, setNewest] = useState(false);
+  const [sel, setSel] = useState<string[]>([]);
+  const last = useRef<string | null>(null);
+
   const desc = (path: string): string => S.data.mediaDescriptions?.[path] ?? "";
-  const shown = files.filter((m) => !term.trim() || `${m.path} ${desc(m.path)}`.toLowerCase().includes(term.trim().toLowerCase()));
+  const files = S.media.filter((m) => d.mediaKind !== "image" || isImagePath(m.path));
+  const folders = [...new Set(files.map((m) => dirOf(m.path)))].filter(Boolean).sort();
+  let shown = files.filter((m) => {
+    const dir = dirOf(m.path);
+    const inFolder = !folder || dir === folder || dir.startsWith(`${folder}/`);
+    return inFolder && (!term.trim() || `${m.path} ${desc(m.path)}`.toLowerCase().includes(term.trim().toLowerCase()));
+  });
+  if (newest) shown = [...shown].sort((a, b) => b.mtime - a.mtime);
+  const already = new Set(d.already);
+  const selectable = shown.filter((m) => !already.has(m.path));
+  const images = shown.filter((m) => isImagePath(m.path));
+
+  const finish = (paths: string[]) => { chosen.current = paths; ref.current?.close(); };
+  function click(path: string, e: { shiftKey: boolean }) {
+    if (already.has(path)) return;
+    if (!d.multiple) return finish([path]);
+    if (e.shiftKey && last.current) {
+      // shift-click: select everything between the last click and this one
+      const a = selectable.findIndex((x) => x.path === last.current);
+      const b = selectable.findIndex((x) => x.path === path);
+      if (a >= 0 && b >= 0) {
+        const range = selectable.slice(Math.min(a, b), Math.max(a, b) + 1).map((x) => x.path);
+        setSel((s) => [...new Set([...s, ...range])]);
+        last.current = path;
+        return;
+      }
+    }
+    last.current = path;
+    setSel((s) => (s.includes(path) ? s.filter((x) => x !== path) : [...s, path]));
+  }
+
   return (
     <dialog ref={ref} className="dlg wide" onClose={() => { d.resolve(chosen.current); closeDialog(d); }}>
-      <h2>Choose an uploaded file</h2>
-      <input type="search" autoFocus value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Filter by file, folder or description…" aria-label="Filter files" />
+      <h2>{d.multiple ? "Choose photos" : "Choose an uploaded file"}</h2>
+      <div className="picker-tools">
+        <input type="search" autoFocus value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Filter by file, folder or description…" aria-label="Filter files" />
+        <select value={folder} onChange={(e) => setFolder(e.target.value)} aria-label="Folder">
+          <option value="">All folders</option>
+          {folders.map((f) => <option key={f} value={f}>{f}</option>)}
+        </select>
+        <label className="check"><input type="checkbox" checked={newest} onChange={(e) => setNewest(e.target.checked)} />Newest first</label>
+      </div>
+      {d.multiple && <p className="help">Click to select several photos · Shift-click selects a range · ⤢ shows a photo larger.</p>}
       <div className="picker-grid">
         {!shown.length && <p className="empty">{files.length ? "Nothing matches." : "No files uploaded yet."}</p>}
-        {shown.map((m) => (
-          <button key={m.path} className="pick" title={desc(m.path) ? `${m.path} — ${desc(m.path)}` : m.path} onClick={() => { chosen.current = m.path; ref.current?.close(); }}>
-            {isImagePath(m.path) ? // eslint-disable-next-line @next/next/no-img-element
-              <img src={m.path} loading="lazy" alt="" /> : <div className="docicon">{extOf(m.path).toUpperCase()}</div>}
-            <span className="pname">{fileName(m.path)}</span>
-            <span className="pdir">{desc(m.path) || dirOf(m.path)}</span>
-          </button>
-        ))}
+        {shown.map((m) => {
+          const isSel = sel.includes(m.path);
+          const isAlready = already.has(m.path);
+          const img = isImagePath(m.path);
+          return (
+            <div key={m.path} className={`pick${isSel ? " selected" : ""}${isAlready ? " already" : ""}`}>
+              <button className="pick-main" title={desc(m.path) ? `${m.path} — ${desc(m.path)}` : m.path} aria-pressed={d.multiple ? isSel : undefined} disabled={isAlready} onClick={(e) => click(m.path, e)}>
+                {img ? // eslint-disable-next-line @next/next/no-img-element
+                  <img src={m.path} loading="lazy" alt="" /> : <div className="docicon">{extOf(m.path).toUpperCase()}</div>}
+                <span className="pname">{fileName(m.path)}</span>
+                <span className="pdir">{desc(m.path) || dirOf(m.path)}</span>
+              </button>
+              {d.multiple && !isAlready && <span className="pick-check" aria-hidden="true">{isSel ? "✓" : ""}</span>}
+              {isAlready && <span className="pick-badge">Already added</span>}
+              {img && (
+                <button className="pick-zoom" title="View larger" aria-label={`View ${fileName(m.path)} larger`} onClick={() => openLightbox(images.map((x) => ({ src: x.path })), images.findIndex((x) => x.path === m.path))}>⤢</button>
+              )}
+            </div>
+          );
+        })}
       </div>
-      <div className="dlg-actions"><button className="btn" onClick={() => ref.current?.close()}>Cancel</button></div>
+      <div className="dlg-actions spread">
+        {d.multiple ? (
+          <div className="pick-count">
+            <strong>{sel.length}</strong> selected
+            <button className="btn sm ghost" onClick={() => setSel(selectable.map((x) => x.path))} disabled={!selectable.length}>Select all shown ({selectable.length})</button>
+            <button className="btn sm ghost" onClick={() => setSel([])} disabled={!sel.length}>Clear</button>
+          </div>
+        ) : <span />}
+        <div className="dlg-buttons">
+          <button className="btn" onClick={() => ref.current?.close()}>Cancel</button>
+          {d.multiple && <button className="btn primary" disabled={!sel.length} onClick={() => finish(sel)}>{sel.length ? `Add ${sel.length} photo${sel.length > 1 ? "s" : ""}` : "Add"}</button>}
+        </div>
+      </div>
+    </dialog>
+  );
+}
+
+/** A photo at full size, with arrow-key navigation and its (shared) description. */
+function LightboxDialog() {
+  const ref = useModal();
+  const lb = ui.lightbox!;
+  const n = lb.items.length;
+  const item = lb.items[lb.index];
+  const lib: Record<string, string> = (S.data.mediaDescriptions ||= {});
+  const file = S.media.find((m) => m.path === item.src);
+  const step = (dir: number) => { ui.lightbox = { ...lb, index: (lb.index + dir + n) % n }; bump(); };
+  const isImage = isImagePath(item.src) || /^https?:/.test(item.src);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (n < 2 || (e.target instanceof HTMLInputElement)) return;
+      if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
+  return (
+    <dialog ref={ref} className="lightbox" aria-label="Photo viewer" onClose={() => { ui.lightbox = null; bump(); }} onClick={(e) => { if (e.target === e.currentTarget) ref.current?.close(); }}>
+      <div className="lb-stage" onClick={(e) => { if (e.target === e.currentTarget) ref.current?.close(); }}>
+        {n > 1 && <button className="lb-nav" aria-label="Previous photo" onClick={() => step(-1)}>‹</button>}
+        {isImage ? // eslint-disable-next-line @next/next/no-img-element
+          <img className="lb-img" src={item.src} alt={lib[item.src] ?? item.alt ?? ""} /> : <div className="stage-msg">No preview for this file type.</div>}
+        {n > 1 && <button className="lb-nav" aria-label="Next photo" onClick={() => step(1)}>›</button>}
+      </div>
+      <div className="lb-bar">
+        <div className="lb-info">
+          <strong>{fileName(item.src)}</strong>
+          <span>{[dirOf(item.src), file ? fmtBytes(file.size) : "", n > 1 ? `${lb.index + 1} of ${n}` : ""].filter(Boolean).join(" · ")}</span>
+        </div>
+        {isImage && (
+          <input
+            className="lb-desc" value={lib[item.src] ?? item.alt ?? ""} placeholder="Describe this photo (shared everywhere it’s used)" aria-label="Photo description"
+            onChange={(e) => { lib[item.src] = e.target.value; edited(); }}
+          />
+        )}
+        <a className="btn sm" href={item.src} target="_blank" rel="noreferrer">Open original ↗</a>
+        <button className="btn sm" autoFocus onClick={() => ref.current?.close()}>Close</button>
+      </div>
     </dialog>
   );
 }

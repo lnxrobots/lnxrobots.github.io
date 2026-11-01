@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { S } from "./schema";
-import { buildIndex, listPages, routeForPath, type Entry, type Resolved } from "./inspect";
+import { buildIndex, listPages, onPathMessage, routeForPath, type Entry, type Resolved } from "./inspect";
 import { isBridgeMessage, onBridgeMessage } from "./protocol";
 import { bump, getVersion, toast, ui, useStore } from "./store";
 
@@ -77,16 +77,16 @@ export default function Preview() {
       const out = onBridgeMessage(e.data, { index: indexNow(), pageRoute: routeForPath(S.data, ui.pagePath) });
       switch (out.kind) {
         case "path": {
-          const moved = ui.pagePath !== out.path;
+          const d = onPathMessage(S.data, { path: out.path, ready: out.ready }, { pagePath: ui.pagePath, followNav: ui.followNav, hash: location.hash });
           ui.bridge = "ok";
           ui.pagePath = out.path;
+          ui.followNav = d.followNav;
           sendToSite({ type: "mode", edit: ui.editMode });
-          // Browsing to another page in the preview: bring the panel along (not on first connect).
-          const route = routeForPath(S.data, out.path);
-          if (moved && !out.ready && route && location.hash !== route) {
+          // The person browsed to another page in the preview: bring the panel along.
+          if (d.switchTo) {
             ui.suppressFollow = true;
             ui.selection = null;
-            location.hash = route;
+            location.hash = d.switchTo;
           }
           bump();
           break;

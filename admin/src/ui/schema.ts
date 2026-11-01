@@ -22,9 +22,9 @@ export const S: {
   media: MediaFile[]; meta: { siteUrl?: string; hasPublic?: boolean }; shrink: boolean;
 } = { data: {}, versions: {}, snap: {}, media: [], meta: {}, shrink: true };
 
-export const DATASETS = ['site', 'teams', 'achievements', 'sponsors', 'disciplines', 'media'];
+export const DATASETS = ['site', 'teams', 'achievements', 'sponsors', 'disciplines', 'media', 'copy'];
 /** Which nav item shows the "unsaved" dot for which dataset. */
-export const NAV_DATASETS: Record<string, string[]> = { site: ['site'], teams: ['teams'], results: ['achievements'], sponsors: ['sponsors'], competitions: ['disciplines'], media: ['media'] };
+export const NAV_DATASETS: Record<string, string[]> = { site: ['site'], teams: ['teams'], results: ['achievements'], sponsors: ['sponsors'], competitions: ['disciplines'], media: ['media'], texts: ['copy'] };
 
 /* ───────── option lists ───────── */
 
@@ -185,6 +185,22 @@ F.discipline = [
   { key: 'url', label: 'Website', type: 'url', optional: true, placeholder: 'https://…' },
 ];
 
+F.copy = [
+  {
+    key: 'home', label: 'Homepage', type: 'group',
+    fields: [
+      { key: 'heroTitle', label: 'Headline', type: 'text', w: 'full', help: 'The big text at the top of the homepage.' },
+      { key: 'latestLabel', label: 'Latest result: label', type: 'text' },
+      { key: 'galleryLabel', label: 'Photos: label', type: 'text', help: 'Their heading and text are under Site → Homepage photos.' },
+      { key: 'teamsLabel', label: 'Teams section: label', type: 'text' },
+      { key: 'teamsTitle', label: 'Teams section: heading', type: 'text' },
+      { key: 'teamsText', label: 'Teams section: paragraph', type: 'textarea' },
+      { key: 'sponsorsLabel', label: 'Sponsors: label', type: 'text' },
+      { key: 'sponsorsText', label: 'Sponsors: paragraph', type: 'textarea' },
+    ],
+  },
+];
+
 F.site = [
   { key: 'name', label: 'Club name', type: 'text', required: true },
   { key: 'designation', label: 'Short name', type: 'text', required: true },
@@ -288,6 +304,7 @@ export function datasetValues(ds: string): Obj {
     case 'sponsors': return { sponsors: d.sponsors.map((s: Obj) => normObj(s, F.sponsor)), fundingNote: String(d.fundingNote || '').trim() };
     case 'disciplines': return { disciplines: d.disciplines.map((x: Obj) => normObj(x, F.discipline)) };
     case 'media': return { mediaDescriptions: mediaValues(d) };
+    case 'copy': return { copy: normObj(d.copy || {}, F.copy) };
   }
 }
 

@@ -44,21 +44,27 @@ export function edited() {
 export interface Toast { id: number; message: string; kind: "info" | "success" | "error" }
 export type DialogSpec =
   | { id: number; kind: "confirm"; title: string; body?: string; ok: string; danger: boolean; resolve: (v: boolean) => void }
-  | { id: number; kind: "picker"; mediaKind: "image" | "all"; resolve: (v: string | null) => void };
+  | { id: number; kind: "picker"; mediaKind: "image" | "all"; multiple: boolean; already: string[]; resolve: (v: string[] | null) => void };
+
+export interface LightItem { src: string; alt?: string }
 
 export interface Selection { label: string; alternatives: Entry[]; container: boolean }
 
 /** UI-only state (nothing here is written to the site). */
 export const ui: {
   toasts: Toast[]; dialogs: DialogSpec[];
+  /** the larger-image viewer */
+  lightbox: { items: LightItem[]; index: number } | null;
   /** field the preview selected: scroll to it and flash it once rendered. key "" = the whole record */
   focus: { obj: Obj; key: string } | null;
   selection: Selection | null;
   pagePath: string; editMode: boolean; device: "desktop" | "tablet" | "phone"; follow: boolean; autosave: boolean;
   bridge: "waiting" | "ok" | "missing";
+  /** a page the editor just asked the preview to open; arriving there must not switch the editor back */
+  followNav: string | null;
   /** set when the panel route changed because of the preview, so the preview doesn't navigate back */
   suppressFollow: boolean;
-} = { toasts: [], dialogs: [], focus: null, selection: null, pagePath: "/", editMode: true, device: "desktop", follow: true, autosave: false, bridge: "waiting", suppressFollow: false };
+} = { toasts: [], dialogs: [], lightbox: null, focus: null, selection: null, pagePath: "/", editMode: true, device: "desktop", follow: true, autosave: false, bridge: "waiting", followNav: null, suppressFollow: false };
 let seq = 0;
 
 export function toast(message: string, kind: Toast["kind"] = "info", ms = 4000) {
@@ -79,7 +85,7 @@ export const confirmDialog = (o: { title: string; body?: string; ok?: string; da
     bump();
   });
 
-export async function pickMedia(mediaKind: "image" | "all" = "image"): Promise<string | null> {
+async function openPicker(mediaKind: "image" | "all", multiple: boolean, already: string[]): Promise<string[] | null> {
   try {
     await loadMedia();
   } catch (e) {
@@ -87,10 +93,21 @@ export async function pickMedia(mediaKind: "image" | "all" = "image"): Promise<s
     return null;
   }
   return new Promise((resolve) => {
-    ui.dialogs = [...ui.dialogs, { id: ++seq, kind: "picker", mediaKind, resolve }];
+    ui.dialogs = [...ui.dialogs, { id: ++seq, kind: "picker", mediaKind, multiple, already, resolve }];
     bump();
   });
 }
+
+/** Pick ONE uploaded file (cover, logo, document…). */
+export const pickMedia = async (mediaKind: "image" | "all" = "image"): Promise<string | null> => (await openPicker(mediaKind, false, []))?.[0] ?? null;
+
+/** Pick SEVERAL uploaded images at once. `already`: paths to mark as added. */
+export const pickMediaMany = (already: string[] = []): Promise<string[] | null> => openPicker("image", true, already);
+
+export const openLightbox = (items: LightItem[], index: number) => {
+  ui.lightbox = { items, index };
+  bump();
+};
 
 export function closeDialog(d: DialogSpec) {
   ui.dialogs = ui.dialogs.filter((x) => x !== d);

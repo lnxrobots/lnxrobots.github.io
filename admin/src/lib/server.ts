@@ -57,6 +57,7 @@ const DATASETS = {
   sponsors: { file: "sponsors.ts", consts: ["sponsors", "fundingNote"] },
   disciplines: { file: "disciplines.ts", consts: ["disciplines"] },
   media: { file: "media.ts", consts: ["mediaDescriptions"] },
+  copy: { file: "copy.ts", consts: ["copy"] },
 } as const;
 type DatasetName = keyof typeof DATASETS;
 
@@ -81,8 +82,10 @@ async function readDataset(ds: DatasetName) {
   try {
     text = await fs.readFile(path.join(DATA_DIR, file), "utf8");
   } catch (e) {
-    if (ds === "media" && (e as NodeJS.ErrnoException).code === "ENOENT") text = MEDIA_TEMPLATE;
-    else throw e;
+    if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw e;
+    // media.ts is created by the editor when the first description is saved; every other file must exist
+    if (ds === "media") text = MEDIA_TEMPLATE;
+    else throw new Error(`src/data/${file} is missing. The editor expects it next to the other data files.`);
   }
   try {
     return { text, values: readConsts(text, [...consts]), version: sha(text) };
@@ -111,6 +114,7 @@ function validateShape(values: Obj): void {
     const m = values.mediaDescriptions;
     if (!m || typeof m !== "object" || Array.isArray(m) || Object.values(m).some((v) => typeof v !== "string")) throw new Error('"mediaDescriptions" must map file paths to text.');
   }
+  if ("copy" in values && (!values.copy || typeof values.copy !== "object" || typeof values.copy.home !== "object")) throw new Error('"copy" must contain the page texts.');
   if ("fundingNote" in values && typeof values.fundingNote !== "string") throw new Error('"fundingNote" must be text.');
   const dup = (list: Obj[], key: string, label: string) => {
     const seen = new Set<string>();

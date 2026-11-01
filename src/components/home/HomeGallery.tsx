@@ -2,6 +2,7 @@ import { site } from "@/data/site";
 import { LightboxGrid } from "@/components/ui/LightboxGrid";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import Link from "next/link";
+import { copy } from "@/data/copy";
 
 export function HomeGallery() {
   const gallery = site.homeGallery;
@@ -10,7 +11,7 @@ export function HomeGallery() {
   return (
     <>
       <section className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionLabel>some photos</SectionLabel>
+        <SectionLabel>{copy.home.galleryLabel}</SectionLabel>
         <h2 className="max-w-lg text-balance font-display text-3xl text-paper">{gallery.title}</h2>
         {gallery.text && (
           <p className="mt-3 max-w-lg font-body text-sm leading-relaxed text-paper-muted">{gallery.text}</p>

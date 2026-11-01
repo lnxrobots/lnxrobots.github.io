@@ -1,13 +1,14 @@
 import Image from "next/image";
 import { sponsors } from "@/data/sponsors";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { copy } from "@/data/copy";
 
 export function SponsorStrip() {
   return (
     <section className="mx-auto max-w-6xl px-5 sm:px-8 mb-10">
-      <SectionLabel>who keeps the boards powered</SectionLabel>
+      <SectionLabel>{copy.home.sponsorsLabel}</SectionLabel>
       <p className="max-w-lg font-body text-sm text-paper-muted">
-        LNX Robots runs on parts, travel budgets, and resources provided by the organisations below.
+        {copy.home.sponsorsText}
       </p>
       <ul className="mt-6 flex flex-wrap items-center gap-3">
         {sponsors.map((s) => (

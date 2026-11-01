@@ -3,6 +3,7 @@ import { CircuitBackground } from "@/components/pcb/CircuitBackground";
 import { CountdownReadout } from "./CountdownReadout";
 import { site } from "@/data/site";
 import Image from "next/image";
+import { copy } from "@/data/copy";
 
 export function Hero() {
   return (
@@ -18,7 +19,7 @@ export function Hero() {
             {site.location} — student robotics club
           </p>
           <h1 className="mt-4 text-balance font-display text-4xl font-medium leading-[1.08] text-paper sm:text-5xl lg:text-6xl">
-            Turning spare parts into world-class robots.
+            {copy.home.heroTitle}
           </h1>
           <p className="mt-5 max-w-md text-balance font-body text-base leading-relaxed text-paper-muted">
             {site.longTagline}

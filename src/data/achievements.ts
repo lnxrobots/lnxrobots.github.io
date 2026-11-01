@@ -136,7 +136,7 @@ export const achievements: Achievement[] = [
       { src: "/content/events/2025-slovakia/assembling-the-new-robot.JPG", alt: "Assembling the new robot" },
       { src: "/content/events/2025-slovakia/nyvora-the-robot-robocup-junior-2025-slovakia-photo-spse-zochova.jpg", alt: "Nyvora the robot. RoboCup Junior 2025 Slovakia. Photo: SPŠE Zochova" },
       { src: "/content/events/2025-slovakia/testing-the-new-robot-s-kicker.jpg", alt: "Testing the new robot's kicker" },
-      { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots" },
+      { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots.jpg", alt: "All 3 generations of our robots (Team 1)" },
       { src: "/content/events/2025-slovakia/all-3-generations-of-our-robots-1.jpg", alt: "All 3 generations of our robots" },
       { src: "/content/events/2025-slovakia/lnx-robots.jpg", alt: "LNX Robots" },
       { src: "/content/events/2025-slovakia/awards-ceremony.JPG", alt: "Awards ceremony" },
