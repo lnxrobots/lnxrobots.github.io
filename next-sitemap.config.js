@@ -8,4 +8,6 @@ module.exports = {
   changefreq: undefined,
   priority: undefined,
   autoLastmod: false,
+
+  exclude: ['/icon.svg', '/icon.svg/']
 }
