@@ -255,7 +255,7 @@ export const teams: Team[] = [
         years: "2027",
         status: "in-development",
         tagline: "",
-        summary: "The second build, for the 2027 robocup open competition.",
+        summary: "... maxon motors ... a 360-degree four-camera vision system ...",
         specs: [],
         docs: [],
         gallery: [],
